@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dashboard | Irongate Markets</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090c11'/%3E%3Crect x='4' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='25' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='4' y='8' width='24' height='3' rx='1.5' fill='%23c8a44a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#090c11;--ink2:#111520;--ink3:#191e2b;--ink4:#1f2535;--gold:#c8a44a;--gold2:#e6c472;--goldm:#8a6d2e;--slate:#64748b;--slatel:#94a3b8;--white:#ffffff;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;--border:rgba(200,164,74,.15);--borderl:rgba(255,255,255,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(9,12,17,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--borderl)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--white)}
+.logo-text span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-link{font-size:13px;color:var(--slatel);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-link:hover{color:var(--white)}
+.nav-link.active{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-user{display:flex;align-items:center;gap:10px;cursor:pointer}
+.nav-avatar{width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--ink)}
+.nav-name{font-size:13px;font-weight:600;color:var(--white)}
+.btn-sm{padding:7px 16px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-gold{background:var(--gold);color:var(--ink);border:1px solid var(--gold)}
+.btn-gold:hover{background:var(--gold2)}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid var(--border)}
+.btn-outline:hover{background:rgba(200,164,74,.08)}
+
+/* LAYOUT */
+.dash-wrap{display:flex;min-height:100vh;padding-top:68px}
+
+/* SIDEBAR */
+.sidebar{width:240px;flex-shrink:0;background:var(--ink2);border-right:1px solid var(--borderl);position:fixed;top:68px;bottom:0;left:0;overflow-y:auto;padding:24px 0}
+.sb-section{margin-bottom:8px}
+.sb-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);padding:8px 20px 4px}
+.sb-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;font-weight:500;color:var(--slatel);text-decoration:none;cursor:pointer;transition:all .15s;border-left:2px solid transparent}
+.sb-item:hover{color:var(--white);background:rgba(255,255,255,.03)}
+.sb-item.active{color:var(--gold);border-left-color:var(--gold);background:rgba(200,164,74,.05)}
+.sb-item .sb-icon{font-size:16px;width:20px;text-align:center;flex-shrink:0}
+.sb-badge{margin-left:auto;background:var(--gold);color:var(--ink);font-size:10px;font-weight:700;padding:2px 6px;border-radius:10px}
+.sb-divider{height:1px;background:var(--borderl);margin:12px 20px}
+
+/* MAIN */
+.main{margin-left:240px;flex:1;padding:32px 40px}
+
+/* WELCOME BANNER */
+.welcome-bar{background:linear-gradient(135deg,rgba(200,164,74,.08) 0%,rgba(200,164,74,.03) 100%);border:1px solid var(--border);border-radius:14px;padding:24px 32px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;gap:20px}
+.wb-text h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:4px}
+.wb-text p{font-size:14px;color:var(--slatel)}
+.wb-actions{display:flex;gap:10px;flex-shrink:0}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.stat-card{background:var(--ink2);border:1px solid var(--borderl);border-radius:12px;padding:20px 24px}
+.stat-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-bottom:8px}
+.stat-num{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.stat-sub{font-size:12px;color:var(--slatel)}
+.stat-up{color:var(--green)}
+.stat-down{color:var(--red)}
+
+/* SECTION HEADER */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.sec-hdr h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:600}
+.see-all{font-size:12px;color:var(--gold);text-decoration:none;font-weight:600;letter-spacing:.04em}
+.see-all:hover{color:var(--gold2)}
+
+/* DEAL CARDS */
+.deals-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:40px}
+.deal-card{background:var(--ink2);border:1px solid var(--borderl);border-radius:12px;padding:22px;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+.deal-card:hover{border-color:rgba(200,164,74,.3);transform:translateY(-2px)}
+.dc-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;gap:12px}
+.dc-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.dc-badge.new{background:rgba(34,197,94,.12);color:var(--green)}
+.dc-badge.hot{background:rgba(239,68,68,.12);color:var(--red)}
+.dc-badge.matched{background:rgba(200,164,74,.12);color:var(--gold)}
+.dc-badge.featured{background:rgba(59,130,246,.12);color:var(--blue)}
+.dc-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--white);margin-bottom:6px;line-height:1.3}
+.dc-sub{font-size:12px;color:var(--slatel);margin-bottom:14px}
+.dc-metrics{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.dc-m{display:flex;flex-direction:column;gap:2px}
+.dc-m-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+.dc-m-val{font-size:14px;font-weight:700;color:var(--white)}
+.dc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--borderl)}
+.dc-sector{font-size:11px;color:var(--slate);font-weight:600;letter-spacing:.04em}
+.dc-nda{font-size:11px;color:var(--gold);font-weight:700;cursor:pointer}
+.dc-nda:hover{color:var(--gold2)}
+
+/* ACTIVITY FEED */
+.activity-card{background:var(--ink2);border:1px solid var(--borderl);border-radius:12px;padding:0;overflow:hidden;margin-bottom:40px}
+.activity-item{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;border-bottom:1px solid var(--borderl)}
+.activity-item:last-child{border-bottom:none}
+.act-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.act-dot.gold{background:var(--gold);box-shadow:0 0 6px var(--gold)}
+.act-dot.green{background:var(--green);box-shadow:0 0 6px var(--green)}
+.act-dot.blue{background:var(--blue)}
+.act-dot.slate{background:var(--slate)}
+.act-text{font-size:13px;color:var(--slatel);line-height:1.5;flex:1}
+.act-text strong{color:var(--white);font-weight:600}
+.act-time{font-size:11px;color:var(--slate);flex-shrink:0;margin-top:2px}
+
+/* TWO-COL LAYOUT */
+.two-col{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:40px}
+
+/* PROFILE COMPLETE */
+.profile-card{background:var(--ink2);border:1px solid var(--borderl);border-radius:12px;padding:24px}
+.profile-card h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.profile-card p{font-size:13px;color:var(--slatel);margin-bottom:16px}
+.progress-bar{height:6px;background:var(--ink4);border-radius:3px;overflow:hidden;margin-bottom:8px}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--goldm),var(--gold));border-radius:3px;transition:width .4s}
+.progress-label{font-size:12px;color:var(--slatel);margin-bottom:16px}
+.profile-steps{display:flex;flex-direction:column;gap:10px}
+.ps-item{display:flex;align-items:center;gap:10px;font-size:13px}
+.ps-check{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--borderl);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px}
+.ps-check.done{background:var(--green);border-color:var(--green);color:#fff}
+.ps-check.pending{border-color:var(--gold)}
+.ps-text{color:var(--slatel)}
+.ps-text.done{color:var(--slatel);text-decoration:line-through}
+
+/* QUICK ACTIONS */
+.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px}
+.qa-btn{background:var(--ink2);border:1px solid var(--borderl);border-radius:10px;padding:16px;cursor:pointer;transition:all .2s;text-align:left;font-family:'DM Sans',sans-serif}
+.qa-btn:hover{border-color:rgba(200,164,74,.3);background:var(--ink3)}
+.qa-icon{font-size:20px;margin-bottom:8px;display:block}
+.qa-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px}
+.qa-desc{font-size:11px;color:var(--slatel)}
+
+/* NDA MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--ink2);border:1px solid var(--border);border-radius:16px;padding:36px;width:100%;max-width:480px;margin:20px}
+.modal h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:8px}
+.modal p{font-size:14px;color:var(--slatel);line-height:1.7;margin-bottom:24px}
+.modal-actions{display:flex;gap:10px}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--slate);font-size:22px;cursor:pointer;line-height:1}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+.form-group input{width:100%;padding:11px 14px;background:rgba(255,255,255,.05);border:1.5px solid var(--borderl);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;outline:none}
+.form-group input:focus{border-color:var(--goldm)}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:48px 20px;color:var(--slate)}
+.empty-state .es-icon{font-size:36px;margin-bottom:12px;display:block}
+.empty-state p{font-size:14px;margin-bottom:16px}
+
+/* ACCESS GATE (shown when not logged in) */
+#gate{display:none;position:fixed;inset:0;z-index:500;background:var(--ink);align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:40px}
+#gate h2{font-family:'Playfair Display',serif;font-size:32px;margin-bottom:12px}
+#gate p{font-size:16px;color:var(--slatel);margin-bottom:28px}
+</style>
+</head>
+<body>
+
+<!-- ACCESS GATE (shown if not authenticated) -->
+<div id="gate" style="display:none;position:fixed;inset:0;z-index:500;background:var(--ink);align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:40px;">
+  <div style="font-family:'Playfair Display',serif;font-size:32px;margin-bottom:12px;">Members Only</div>
+  <p style="font-size:16px;color:var(--slatel);margin-bottom:28px;max-width:400px;">You need to create a free account to access the Irongate Markets deal network.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="/" class="btn-sm btn-gold" style="padding:12px 28px;font-size:13px;">Create Free Account</a>
+    <a href="#" id="gate-signin" class="btn-sm btn-outline" style="padding:12px 28px;font-size:13px;">Sign In</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#090c11"/><rect x="4" y="8" width="3" height="18" rx="1.5" fill="#c8a44a"/><rect x="25" y="8" width="3" height="18" rx="1.5" fill="#c8a44a"/><rect x="4" y="8" width="24" height="3" rx="1.5" fill="#c8a44a"/></svg>
+    <span class="logo-text">Irongate<span> Markets</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="/dashboard" class="nav-link active">Dashboard</a>
+    <a href="/listings" class="nav-link">Browse Deals</a>
+    <a href="/list-a-deal" class="nav-link">List a Deal</a>
+    <a href="/advisors" class="nav-link">Advisors</a>
+    <a href="/resources" class="nav-link">Resources</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-user">
+      <div class="nav-avatar" id="user-avatar">?</div>
+      <span class="nav-name" id="user-name">Loading…</span>
+    </div>
+    <a href="#" id="signout-btn" class="btn-sm btn-outline">Sign Out</a>
+  </div>
+</nav>
+
+<!-- DASHBOARD WRAP -->
+<div class="dash-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-section">
+      <div class="sb-label">Deal Flow</div>
+      <a href="/listings" class="sb-item"><span class="sb-icon">🏢</span>Browse Listings</a>
+      <a href="/listings?saved=1" class="sb-item"><span class="sb-icon">🔖</span>Saved Deals<span class="sb-badge" id="saved-count">0</span></a>
+      <a href="/listings?match=1" class="sb-item active"><span class="sb-icon">⚡</span>My Matches<span class="sb-badge">3</span></a>
+      <a href="#ndas" class="sb-item"><span class="sb-icon">📋</span>NDA'd Deals</a>
+    </div>
+    <div class="sb-divider"></div>
+    <div class="sb-section">
+      <div class="sb-label">My Activity</div>
+      <a href="#" class="sb-item"><span class="sb-icon">💬</span>Messages<span class="sb-badge">1</span></a>
+      <a href="#" class="sb-item"><span class="sb-icon">📄</span>My Listings</a>
+      <a href="#" class="sb-item"><span class="sb-icon">📊</span>Deal Analytics</a>
+    </div>
+    <div class="sb-divider"></div>
+    <div class="sb-section">
+      <div class="sb-label">Account</div>
+      <a href="/profile" class="sb-item"><span class="sb-icon">👤</span>My Profile</a>
+      <a href="/profile?tab=criteria" class="sb-item"><span class="sb-icon">🎯</span>Deal Criteria</a>
+      <a href="/profile?tab=alerts" class="sb-item"><span class="sb-icon">🔔</span>Deal Alerts</a>
+      <a href="/profile?tab=settings" class="sb-item"><span class="sb-icon">⚙️</span>Settings</a>
+    </div>
+    <div class="sb-divider"></div>
+    <div class="sb-section">
+      <div class="sb-label">Resources</div>
+      <a href="/valuation" class="sb-item"><span class="sb-icon">📈</span>Valuation Tool</a>
+      <a href="/resources" class="sb-item"><span class="sb-icon">📚</span>Resource Center</a>
+      <a href="/advisors" class="sb-item"><span class="sb-icon">🤝</span>Advisor Directory</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- WELCOME BANNER -->
+    <div class="welcome-bar">
+      <div class="wb-text">
+        <h2>Welcome back, <span id="welcome-name" style="color:var(--gold)">there</span> 👋</h2>
+        <p>You have <strong style="color:var(--white)">3 new deal matches</strong> and <strong style="color:var(--white)">1 unread message</strong> since your last visit.</p>
+      </div>
+      <div class="wb-actions">
+        <a href="/listings" class="btn-sm btn-gold">Browse Deals</a>
+        <a href="/list-a-deal" class="btn-sm btn-outline">List a Deal</a>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Active Listings</div>
+        <div class="stat-num">10,847</div>
+        <div class="stat-sub"><span class="stat-up">↑ 342</span> added this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">My Saved Deals</div>
+        <div class="stat-num" id="dash-saved">0</div>
+        <div class="stat-sub">Across all sectors</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Deal Matches</div>
+        <div class="stat-num">3</div>
+        <div class="stat-sub">Based on your criteria</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Network Members</div>
+        <div class="stat-num">20,400+</div>
+        <div class="stat-sub"><span class="stat-up">↑ 128</span> joined this week</div>
+      </div>
+    </div>
+
+    <!-- TWO COLUMN -->
+    <div class="two-col">
+      <div>
+        <!-- MATCHED DEALS -->
+        <div class="sec-hdr">
+          <h3>⚡ Your Deal Matches</h3>
+          <a href="/listings?match=1" class="see-all">View All →</a>
+        </div>
+        <div class="deals-grid">
+
+          <a href="/deal/mfg-midwest-001" class="deal-card">
+            <div class="dc-header">
+              <span class="dc-badge matched">AI Matched</span>
+              <span style="font-size:11px;color:var(--slate)">Listed 3d ago</span>
+            </div>
+            <div class="dc-title">Midwest Precision Manufacturing Co.</div>
+            <div class="dc-sub">CNC machining for aerospace & defense — 38 years in operation</div>
+            <div class="dc-metrics">
+              <div class="dc-m"><span class="dc-m-label">Asking</span><span class="dc-m-val">$8.4M</span></div>
+              <div class="dc-m"><span class="dc-m-label">Revenue</span><span class="dc-m-val">$11.2M</span></div>
+              <div class="dc-m"><span class="dc-m-label">EBITDA</span><span class="dc-m-val">$2.1M</span></div>
+              <div class="dc-m"><span class="dc-m-label">Multiple</span><span class="dc-m-val">4.0x</span></div>
+            </div>
+            <div class="dc-footer">
+              <span class="dc-sector">🏭 Manufacturing · Texas</span>
+              <span class="dc-nda" onclick="openNDA(event,'Midwest Precision Manufacturing Co.')">Sign NDA & View Details →</span>
+            </div>
+          </a>
+
+          <a href="/deal/healthcare-tx-002" class="deal-card">
+            <div class="dc-header">
+              <span class="dc-badge hot">HOT</span>
+              <span style="font-size:11px;color:var(--slate)">Listed 1d ago</span>
+            </div>
+            <div class="dc-title">Texas Multi-Site Physical Therapy Group</div>
+            <div class="dc-sub">7 locations, recurring insurance revenue, strong referral base</div>
+            <div class="dc-metrics">
+              <div class="dc-m"><span class="dc-m-label">Asking</span><span class="dc-m-val">$12.5M</span></div>
+              <div class="dc-m"><span class="dc-m-label">Revenue</span><span class="dc-m-val">$9.8M</span></div>
+              <div class="dc-m"><span class="dc-m-label">EBITDA</span><span class="dc-m-val">$2.8M</span></div>
+              <div class="dc-m"><span class="dc-m-label">Multiple</span><span class="dc-m-val">4.5x</span></div>
+            </div>
+            <div class="dc-footer">
+              <span class="dc-sector">🏥 Healthcare · Texas</span>
+              <span class="dc-nda" onclick="openNDA(event,'Texas Multi-Site Physical Therapy Group')">Sign NDA & View Details →</span>
+            </div>
+          </a>
+
+          <a href="/deal/distribution-003" class="deal-card">
+            <div class="dc-header">
+              <span class="dc-badge new">NEW</span>
+              <span style="font-size:11px;color:var(--slate)">Listed today</span>
+            </div>
+            <div class="dc-title">Industrial Distribution Company — Southwest</div>
+            <div class="dc-sub">B2B distribution, $2.4M EBITDA, long-term vendor contracts</div>
+            <div class="dc-metrics">
+              <div class="dc-m"><span class="dc-m-label">Asking</span><span class="dc-m-val">$15.0M</span></div>
+              <div class="dc-m"><span class="dc-m-label">Revenue</span><span class="dc-m-val">$28.4M</span></div>
+              <div class="dc-m"><span class="dc-m-label">EBITDA</span><span class="dc-m-val">$2.4M</span></div>
+              <div class="dc-m"><span class="dc-m-label">Multiple</span><span class="dc-m-val">6.3x</span></div>
+            </div>
+            <div class="dc-footer">
+              <span class="dc-sector">🚚 Distribution · Southwest</span>
+              <span class="dc-nda" onclick="openNDA(event,'Industrial Distribution Company')">Sign NDA & View Details →</span>
+            </div>
+          </a>
+
+          <!-- BROWSE MORE -->
+          <a href="/listings" class="deal-card" style="display:flex;align-items:center;justify-content:center;min-height:180px;background:rgba(200,164,74,.03);border-style:dashed;">
+            <div style="text-align:center;">
+              <div style="font-size:28px;margin-bottom:10px;">🔍</div>
+              <div style="font-size:14px;font-weight:600;color:var(--gold);margin-bottom:4px;">Browse All 10,847 Listings</div>
+              <div style="font-size:12px;color:var(--slatel)">Filter by sector, size & location</div>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- RECENT ACTIVITY -->
+        <div class="sec-hdr">
+          <h3>Recent Activity</h3>
+        </div>
+        <div class="activity-card">
+          <div class="activity-item">
+            <div class="act-dot green"></div>
+            <div class="act-text"><strong>Account confirmed.</strong> Welcome to Irongate Markets — your deal flow is now active.</div>
+            <div class="act-time">Today</div>
+          </div>
+          <div class="activity-item">
+            <div class="act-dot gold"></div>
+            <div class="act-text"><strong>3 new deals</strong> match your criteria. Review them above.</div>
+            <div class="act-time">Today</div>
+          </div>
+          <div class="activity-item">
+            <div class="act-dot blue"></div>
+            <div class="act-text">Complete your <strong>deal criteria profile</strong> to receive AI-matched deal flow daily.</div>
+            <div class="act-time">Action needed</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <!-- PROFILE COMPLETE -->
+        <div class="profile-card" style="margin-bottom:16px">
+          <h4>Complete Your Profile</h4>
+          <p>Unlock full NDA access and AI deal matching by completing your buyer profile.</p>
+          <div class="progress-bar"><div class="progress-fill" style="width:35%"></div></div>
+          <div class="progress-label">35% complete</div>
+          <div class="profile-steps">
+            <div class="ps-item"><div class="ps-check done">✓</div><span class="ps-text done">Create account</span></div>
+            <div class="ps-item"><div class="ps-check done">✓</div><span class="ps-text done">Verify email</span></div>
+            <div class="ps-item"><div class="ps-check pending">→</div><span class="ps-text">Set deal criteria</span></div>
+            <div class="ps-item"><div class="ps-check pending"></div><span class="ps-text" style="color:var(--slate)">Add firm/company info</span></div>
+            <div class="ps-item"><div class="ps-check pending"></div><span class="ps-text" style="color:var(--slate)">Verify identity (for NDA access)</span></div>
+          </div>
+          <div style="margin-top:18px">
+            <a href="/profile?tab=criteria" class="btn-sm btn-gold" style="display:inline-block;padding:10px 20px;">Set Deal Criteria →</a>
+          </div>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div style="margin-bottom:16px">
+          <div class="sec-hdr"><h3>Quick Actions</h3></div>
+          <div class="quick-actions">
+            <button class="qa-btn" onclick="location.href='/listings'"><span class="qa-icon">🔍</span><div class="qa-title">Browse Listings</div><div class="qa-desc">Search 10,847 deals</div></button>
+            <button class="qa-btn" onclick="location.href='/list-a-deal'"><span class="qa-icon">📢</span><div class="qa-title">List a Deal</div><div class="qa-desc">Reach 3,200+ buyers</div></button>
+            <button class="qa-btn" onclick="location.href='/valuation'"><span class="qa-icon">📊</span><div class="qa-title">Valuation Tool</div><div class="qa-desc">Estimate your value</div></button>
+            <button class="qa-btn" onclick="location.href='/advisors'"><span class="qa-icon">🤝</span><div class="qa-title">Find Advisor</div><div class="qa-desc">Vetted M&A advisors</div></button>
+          </div>
+        </div>
+
+        <!-- MARKET PULSE -->
+        <div class="profile-card">
+          <h4 style="margin-bottom:12px">Market Pulse</h4>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px">
+              <span style="color:var(--slatel)">Avg. LMM Multiple</span>
+              <span style="font-weight:700;color:var(--gold)">4.8x EBITDA</span>
+            </div>
+            <div style="height:1px;background:var(--borderl)"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px">
+              <span style="color:var(--slatel)">Deals Closed (30d)</span>
+              <span style="font-weight:700;color:var(--white)">218</span>
+            </div>
+            <div style="height:1px;background:var(--borderl)"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px">
+              <span style="color:var(--slatel)">Hottest Sector</span>
+              <span style="font-weight:700;color:var(--white)">Healthcare Services</span>
+            </div>
+            <div style="height:1px;background:var(--borderl)"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px">
+              <span style="color:var(--slatel)">Avg. Days on Market</span>
+              <span style="font-weight:700;color:var(--green)">127 days</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- NDA MODAL -->
+<div class="modal-overlay" id="nda-modal">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="document.getElementById('nda-modal').classList.remove('open')">×</button>
+    <h3>Sign NDA to View Details</h3>
+    <p>Electronically sign a mutual NDA to unlock the full information memorandum, financials, and seller contact details for <strong id="nda-deal-name" style="color:var(--gold)"></strong>.</p>
+    <div class="form-group">
+      <label>Full Legal Name</label>
+      <input type="text" id="nda-name" placeholder="Your full name">
+    </div>
+    <div class="form-group">
+      <label>Company / Firm</label>
+      <input type="text" id="nda-company" placeholder="Your company name">
+    </div>
+    <div style="font-size:12px;color:var(--slate);margin-bottom:20px;line-height:1.6">By clicking below, you agree to keep all deal information strictly confidential and not to disclose to any third party without written consent.</div>
+    <div class="modal-actions">
+      <button class="btn-sm btn-gold" onclick="signNDA()" style="padding:12px 24px;font-size:13px;flex:1">Sign & Access Deal Room →</button>
+    </div>
+  </div>
+</div>
+
+<!-- SIGN IN MODAL (for gate) -->
+<div id="signin-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+  <div style="background:var(--ink2);border:1px solid var(--border);border-radius:16px;padding:40px;width:100%;max-width:420px;margin:20px;position:relative;">
+    <button onclick="document.getElementById('signin-modal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;color:var(--slate);font-size:22px;cursor:pointer">×</button>
+    <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:6px;">Welcome Back</div>
+    <div style="font-size:14px;color:var(--slatel);margin-bottom:24px;">Enter your email — we'll send a secure sign-in link.</div>
+    <div style="margin-bottom:14px">
+      <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-bottom:6px">Email Address</label>
+      <input id="signin-email" type="email" placeholder="you@yourfirm.com" style="width:100%;padding:12px 14px;background:rgba(255,255,255,.05);border:1.5px solid var(--borderl);border-radius:8px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:15px;outline:none">
+    </div>
+    <button id="signin-submit" onclick="doSignIn()" style="width:100%;padding:14px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">Send Sign-In Link →</button>
+    <div id="signin-msg" style="margin-top:12px;font-size:13px;text-align:center;display:none"></div>
+  </div>
+</div>
+
+<script>
+var SB_URL = 'https://greyhuwbeszlgtmmzojx.supabase.co';
+var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdyZXlodXdiZXN6bGd0bW16b2p4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MDYzOTcsImV4cCI6MjA5ODI4MjM5N30.yZQ1WyDpn0lJLM0jcxV7F405NPN09KDe-8HAMvDDqJw';
+
+var sb;
+
+function init() {
+  if (!window.supabase) return setTimeout(init, 100);
+  sb = window.supabase.createClient(SB_URL, SB_KEY);
+
+  sb.auth.getSession().then(function(r) {
+    if (r.data && r.data.session) {
+      showDashboard(r.data.session.user);
+    } else {
+      // Check for hash tokens (just confirmed email)
+      var hash = window.location.hash;
+      if (hash && hash.includes('access_token')) {
+        sb.auth.onAuthStateChange(function(event, session) {
+          if (session) showDashboard(session.user);
+        });
+      } else {
+        showGate();
+      }
+    }
+  });
+
+  sb.auth.onAuthStateChange(function(event, session) {
+    if (event === 'SIGNED_IN' && session) showDashboard(session.user);
+    if (event === 'SIGNED_OUT') showGate();
+  });
+}
+
+function showDashboard(user) {
+  document.getElementById('gate').style.display = 'none';
+  var meta = user.user_metadata || {};
+  var firstName = meta.first_name || user.email.split('@')[0];
+  var initial = firstName.charAt(0).toUpperCase();
+  document.getElementById('user-avatar').textContent = initial;
+  document.getElementById('user-name').textContent = firstName;
+  document.getElementById('welcome-name').textContent = firstName;
+  // Load saved deals count from localStorage
+  var saved = JSON.parse(localStorage.getItem('ig_saved') || '[]');
+  document.getElementById('saved-count').textContent = saved.length;
+  document.getElementById('dash-saved').textContent = saved.length;
+}
+
+function showGate() {
+  document.getElementById('gate').style.display = 'flex';
+}
+
+document.getElementById('signout-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  sb && sb.auth.signOut().then(function() { window.location.href = '/'; });
+});
+
+document.getElementById('gate-signin').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.getElementById('signin-modal').style.display = 'flex';
+});
+
+function doSignIn() {
+  var email = document.getElementById('signin-email').value.trim();
+  var msg = document.getElementById('signin-msg');
+  if (!email || !email.includes('@')) { msg.textContent = 'Please enter a valid email.'; msg.style.color = '#ef4444'; msg.style.display = 'block'; return; }
+  document.getElementById('signin-submit').textContent = 'Sending…';
+  document.getElementById('signin-submit').disabled = true;
+  sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: 'https://irongatemarkets.io/dashboard' } }).then(function(r) {
+    if (r.error) { msg.textContent = r.error.message; msg.style.color = '#ef4444'; msg.style.display = 'block'; document.getElementById('signin-submit').textContent = 'Send Sign-In Link →'; document.getElementById('signin-submit').disabled = false; }
+    else { msg.textContent = 'Check your email — we sent a sign-in link!'; msg.style.color = '#22c55e'; msg.style.display = 'block'; }
+  });
+}
+
+function openNDA(e, dealName) {
+  e.preventDefault();
+  e.stopPropagation();
+  document.getElementById('nda-deal-name').textContent = dealName;
+  document.getElementById('nda-modal').classList.add('open');
+}
+
+function signNDA() {
+  var name = document.getElementById('nda-name').value.trim();
+  var company = document.getElementById('nda-company').value.trim();
+  if (!name || !company) { alert('Please enter your name and company.'); return; }
+  // In production: store NDA record in Supabase, then redirect to deal room
+  document.getElementById('nda-modal').classList.remove('open');
+  alert('NDA signed! Full deal details would now be unlocked. (Deal room coming soon.)');
+}
+
+// Load Supabase SDK
+var s = document.createElement('script');
+s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+s.onload = init;
+document.head.appendChild(s);
+</script>
+</body>
+</html>

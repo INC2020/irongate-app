@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources | Irongate Markets — M&A Education for the Lower Middle Market</title>
+<meta name="description" content="Free M&A guides, templates, valuation frameworks, and deal education for business owners, acquirers, and advisors. Built by practitioners, not consultants.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090c11'/%3E%3Crect x='4' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='25' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='4' y='8' width='24' height='3' rx='1.5' fill='%23c8a44a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#090c11;--ink2:#111520;--ink3:#191e2b;--ink4:#1f2535;--gold:#c8a44a;--gold2:#e6c472;--slate:#64748b;--slatel:#94a3b8;--white:#fff;--green:#22c55e;--border:rgba(200,164,74,.15);--borderl:rgba(255,255,255,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(9,12,17,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--borderl)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--white)}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-link{font-size:13px;color:var(--slatel);text-decoration:none;font-weight:500}
+.nav-link:hover{color:var(--white)}
+.nav-link.active{color:var(--gold)}
+.btn-sm{padding:8px 18px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif}
+.btn-gold{background:var(--gold);color:var(--ink);border:1px solid var(--gold)}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid var(--border)}
+.page{padding-top:68px}
+.hero{padding:56px 80px 48px;text-align:center;background:linear-gradient(135deg,var(--ink2) 0%,var(--ink3) 100%);border-bottom:1px solid var(--borderl)}
+.hero h1{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:14px}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:16px;color:var(--slatel);max-width:540px;margin:0 auto 28px;line-height:1.7}
+/* TABS */
+.tabs{display:flex;gap:6px;justify-content:center;padding:20px 40px;background:var(--ink2);border-bottom:1px solid var(--borderl)}
+.tab{padding:8px 18px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;border:1px solid transparent;color:var(--slatel);background:transparent;font-family:'DM Sans',sans-serif;transition:all .2s}
+.tab.active{background:rgba(200,164,74,.12);border-color:rgba(200,164,74,.3);color:var(--gold)}
+.tab:hover:not(.active){color:var(--white);border-color:var(--borderl)}
+/* CONTENT */
+.resources-wrap{max-width:1100px;margin:0 auto;padding:48px 40px 80px;display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:start}
+/* FEATURED */
+.featured-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.featured-card{background:linear-gradient(135deg,rgba(200,164,74,.08),rgba(200,164,74,.02));border:1px solid var(--border);border-radius:14px;padding:28px;cursor:pointer;transition:all .2s}
+.featured-card:hover{border-color:rgba(200,164,74,.4);transform:translateY(-2px)}
+.fc-type{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.fc-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;margin-bottom:8px;line-height:1.3}
+.fc-desc{font-size:13px;color:var(--slatel);line-height:1.6;margin-bottom:16px}
+.fc-meta{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--slate)}
+.fc-tag{padding:2px 8px;background:rgba(200,164,74,.08);border-radius:100px;color:var(--gold);font-size:10px;font-weight:700}
+/* RESOURCE LIST */
+.resource-list{display:flex;flex-direction:column;gap:12px}
+.resource-item{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;background:var(--ink2);border:1px solid var(--borderl);border-radius:12px;cursor:pointer;transition:all .2s}
+.resource-item:hover{border-color:rgba(200,164,74,.25)}
+.ri-icon{width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
+.ri-icon.guide{background:rgba(200,164,74,.1)}
+.ri-icon.template{background:rgba(59,130,246,.1)}
+.ri-icon.video{background:rgba(239,68,68,.1)}
+.ri-icon.glossary{background:rgba(34,197,94,.1)}
+.ri-body{flex:1}
+.ri-title{font-size:14px;font-weight:700;margin-bottom:3px}
+.ri-desc{font-size:12px;color:var(--slatel);line-height:1.5;margin-bottom:6px}
+.ri-footer{display:flex;align-items:center;gap:10px}
+.ri-type{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:100px}
+.ri-type.guide{background:rgba(200,164,74,.1);color:var(--gold)}
+.ri-type.template{background:rgba(59,130,246,.1);color:#93c5fd}
+.ri-type.video{background:rgba(239,68,68,.1);color:#fca5a5}
+.ri-type.glossary{background:rgba(34,197,94,.1);color:#86efac}
+.ri-min{font-size:11px;color:var(--slate)}
+.ri-lock{font-size:11px;color:var(--gold);font-weight:700}
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:16px}
+.sb-card{background:var(--ink2);border:1px solid var(--borderl);border-radius:14px;padding:20px}
+.sb-card h3{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--borderl)}
+.sb-link{display:block;padding:9px 0;font-size:13px;color:var(--slatel);text-decoration:none;border-bottom:1px solid var(--borderl);transition:color .2s}
+.sb-link:hover{color:var(--gold)}
+.sb-link:last-child{border-bottom:none;padding-bottom:0}
+/* NEWSLETTER */
+.newsletter-bar{background:linear-gradient(135deg,rgba(200,164,74,.08),rgba(200,164,74,.02));border-top:1px solid var(--border);padding:56px 80px;text-align:center}
+.newsletter-bar h2{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:10px}
+.newsletter-bar p{font-size:15px;color:var(--slatel);max-width:440px;margin:0 auto 24px;line-height:1.7}
+.nl-form{display:flex;gap:10px;max-width:420px;margin:0 auto}
+.nl-input{flex:1;padding:11px 15px;background:rgba(255,255,255,.07);border:1.5px solid var(--borderl);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:13px;outline:none}
+.nl-input::placeholder{color:var(--slate)}
+.nl-btn{padding:11px 20px;background:var(--gold);color:var(--ink);border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Irongate<span> Markets</span></a>
+  <div class="nav-links">
+    <a href="/dashboard" class="nav-link">Dashboard</a>
+    <a href="/listings" class="nav-link">Browse Deals</a>
+    <a href="/list-a-deal" class="nav-link">List a Deal</a>
+    <a href="/advisors" class="nav-link">Advisors</a>
+    <a href="/resources" class="nav-link active">Resources</a>
+  </div>
+  <div style="display:flex;gap:10px">
+    <a href="/" class="btn-sm btn-outline">Sign In</a>
+    <a href="/" class="btn-sm btn-gold">Get Access</a>
+  </div>
+</nav>
+<div class="page">
+  <div class="hero">
+    <h1>M&A <span>Resource Center</span></h1>
+    <p>Practical guides, templates, and education built for owners, acquirers, and advisors navigating deals in the $1M–$50M range.</p>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="filterTab(this,'all')">All Resources</button>
+    <button class="tab" onclick="filterTab(this,'seller')">Selling a Business</button>
+    <button class="tab" onclick="filterTab(this,'buyer')">Buying a Business</button>
+    <button class="tab" onclick="filterTab(this,'advisor')">For Advisors</button>
+    <button class="tab" onclick="filterTab(this,'finance')">Financing</button>
+  </div>
+
+  <div class="resources-wrap">
+    <div>
+      <!-- FEATURED -->
+      <div class="featured-row">
+        <div class="featured-card">
+          <div class="fc-type">📘 Essential Guide</div>
+          <div class="fc-title">How to Sell Your Business: A Complete Owner's Playbook</div>
+          <div class="fc-desc">From prep to close — understand how buyers value your business, how to qualify buyers, and how to protect yourself through the process.</div>
+          <div class="fc-meta"><span class="fc-tag">Free</span><span>38 min read</span><span>·</span><span>Updated May 2026</span></div>
+        </div>
+        <div class="featured-card">
+          <div class="fc-type">📊 Template Pack</div>
+          <div class="fc-title">LMM Acquisition Due Diligence Checklist</div>
+          <div class="fc-desc">The exact DD checklist used by LMM PE firms. Covers financial, legal, operational, customer, and tech due diligence. Includes scoring rubric.</div>
+          <div class="fc-meta"><span class="fc-tag">Members Only</span><span>Excel + PDF</span><span>·</span><span>147 downloads</span></div>
+        </div>
+      </div>
+
+      <!-- RESOURCE LIST -->
+      <div class="resource-list">
+
+        <div class="resource-item">
+          <div class="ri-icon guide">📘</div>
+          <div class="ri-body">
+            <div class="ri-title">EBITDA Add-Backs: What Counts and What Buyers Will Fight You On</div>
+            <div class="ri-desc">Owner comp, rent normalization, one-time expenses — learn what legitimately boosts your value and what will erode buyer trust.</div>
+            <div class="ri-footer"><span class="ri-type guide">Guide</span><span class="ri-min">14 min read</span></div>
+          </div>
+        </div>
+
+        <div class="resource-item">
+          <div class="ri-icon template">📋</div>
+          <div class="ri-body">
+            <div class="ri-title">Confidential Information Memorandum (CIM) Template</div>
+            <div class="ri-desc">The exact CIM structure PE firms and investment banks use. Fully editable — just drop in your numbers and narrative.</div>
+            <div class="ri-footer"><span class="ri-type template">Template</span><span class="ri-min">Word + PDF</span><span class="ri-lock">🔒 Members Only</span></div>
+          </div>
+        </div>
+
+        <div class="resource-item">
+          <div class="ri-icon guide">📘</div>
+          <div class="ri-body">
+            <div class="ri-title">SBA 7(a) Financing for Business Acquisitions: A Buyer's Guide</div>
+            <div class="ri-desc">How SBA financing works in LMM deals, what lenders look for, what gets declined, and how to structure a deal to qualify.</div>
+            <div class="ri-footer"><span class="ri-type guide">Guide</span><span class="ri-min">22 min read</span></div>
+          </div>
+        </div>
+
+        <div class="resource-item">
+          <div class="ri-icon video">🎬</div>
+          <div class="ri-body">
+            <div class="ri-title">Deal Structure 101: Asset vs. Stock Sale (What Buyers and Sellers Each Want)</div>
+            <div class="ri-desc">Video walkthrough of the tax implications, liability differences, and negotiation dynamics of asset vs. stock deal structures.</div>
+            <div class="ri-footer"><span class="ri-type video">Video</span><span class="ri-min">18 min video</span></div>
+          </div>
+        </div>
+
+        <div class="resource-item">
+          <div class="ri-icon template">📋</div>
+          <div class="ri-body">
+            <div class="ri-title">Letter of Intent (LOI) Template — Buyer Version</div>
+            <div class="ri-desc">Non-binding LOI template with negotiation commentary. Covers price, structure, exclusivity, closing conditions, and rep/warranties.</div>
+            <div class="ri-footer"><span class="ri-type template">Template</span><span class="ri-min">Word doc</span><span class="ri-lock">🔒 Members Only</span></div>
+          </div>
+        </div>
+
+        <div class="resource-item">
+          <div class="ri-icon guide">📘</div>
+          <div class="ri-body">
+            <div class="ri-title">The Earnout Trap: How to Negotiate Earnouts That Actually Pay Out</div>
+            <div class="ri-desc">80% of earnouts never pay in full. Here's how sellers get protected, what metrics matter, and what to never agree to.</div>
+            <div class="ri-footer"><span class="ri-type guide">Guide</span><span class="ri-min">16 min read</span></div>
+          </div>
+        </div>
+
+        <div class="resource-item">
+          <div class="ri-icon glossary">📖</div>
+          <div class="ri-body">
+            <div class="ri-title">M&A Glossary: 120 Terms Every Buyer, Seller, and Advisor Should Know</div>
+            <div class="ri-desc">From add-backs to working capital peg to ratchet to rep & warranty insurance — comprehensive LMM M&A terminology guide.</div>
+            <div class="ri-footer"><span class="ri-type glossary">Glossary</span><span class="ri-min">Reference doc</span></div>
+          </div>
+        </div>
+
+        <div class="resource-item">
+          <div class="ri-icon template">📋</div>
+          <div class="ri-body">
+            <div class="ri-title">Quality of Earnings (QoE) Review Prep Checklist</div>
+            <div class="ri-desc">Prepare your financials before buyers bring in a QoE firm. Know what they'll find before they do — and how to address it proactively.</div>
+            <div class="ri-footer"><span class="ri-type template">Template</span><span class="ri-min">Excel</span><span class="ri-lock">🔒 Members Only</span></div>
+          </div>
+        </div>
+
+        <div class="resource-item">
+          <div class="ri-icon video">🎬</div>
+          <div class="ri-body">
+            <div class="ri-title">How PE Firms Evaluate Your Business (From the Inside)</div>
+            <div class="ri-desc">A former PE associate walks through exactly what happens when a deal lands on a firm's desk — how they build the model and decide to proceed.</div>
+            <div class="ri-footer"><span class="ri-type video">Video</span><span class="ri-min">31 min video</span><span class="ri-lock">🔒 Members Only</span></div>
+          </div>
+        </div>
+
+        <div class="resource-item">
+          <div class="ri-icon guide">📘</div>
+          <div class="ri-body">
+            <div class="ri-title">How to Choose an M&A Advisor (And Avoid Getting Burned)</div>
+            <div class="ri-desc">What separates great advisors from time-wasters: fee structures, exclusivity traps, marketing approach, and buyer network quality.</div>
+            <div class="ri-footer"><span class="ri-type guide">Guide</span><span class="ri-min">11 min read</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sb-card">
+        <h3>Quick Links</h3>
+        <a href="/valuation" class="sb-link">→ Valuation Calculator</a>
+        <a href="/advisors" class="sb-link">→ Find an Advisor</a>
+        <a href="/listings" class="sb-link">→ Browse Deals</a>
+        <a href="/list-a-deal" class="sb-link">→ List Your Business</a>
+      </div>
+      <div class="sb-card">
+        <h3>By Topic</h3>
+        <a href="#" class="sb-link">Valuation & Pricing</a>
+        <a href="#" class="sb-link">Due Diligence</a>
+        <a href="#" class="sb-link">Deal Structure</a>
+        <a href="#" class="sb-link">Financing</a>
+        <a href="#" class="sb-link">Closing Process</a>
+        <a href="#" class="sb-link">Tax Considerations</a>
+        <a href="#" class="sb-link">Post-Acquisition</a>
+      </div>
+      <div class="sb-card" style="background:linear-gradient(135deg,rgba(200,164,74,.08),rgba(200,164,74,.02));border-color:var(--border)">
+        <h3>Members Get More</h3>
+        <div style="font-size:13px;color:var(--slatel);line-height:1.6;margin-bottom:14px">Unlock templates, videos, and tools — free with an Irongate Markets account.</div>
+        <a href="/" style="display:block;padding:10px;background:var(--gold);color:var(--ink);border-radius:7px;font-size:12px;font-weight:700;text-align:center;text-decoration:none">Create Free Account →</a>
+      </div>
+      <div class="sb-card">
+        <h3>Most Popular</h3>
+        <a href="#" class="sb-link">1. EBITDA Add-Backs Guide</a>
+        <a href="#" class="sb-link">2. DD Checklist (Template)</a>
+        <a href="#" class="sb-link">3. SBA 7(a) Buyer's Guide</a>
+        <a href="#" class="sb-link">4. LOI Template</a>
+        <a href="#" class="sb-link">5. M&A Glossary</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter-bar">
+    <h2>The Irongate Brief</h2>
+    <p>Weekly M&A intel for the lower middle market — deal multiples, market trends, and practical advice. No fluff.</p>
+    <div class="nl-form">
+      <input type="email" class="nl-input" placeholder="your@email.com" id="nl-email">
+      <button class="nl-btn" onclick="subscribeNewsletter()">Subscribe →</button>
+    </div>
+    <div style="font-size:11px;color:var(--slate);margin-top:10px">Join 4,200+ professionals. Unsubscribe anytime.</div>
+  </div>
+</div>
+
+<script>
+function filterTab(el, cat) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+function subscribeNewsletter() {
+  var em = document.getElementById('nl-email').value;
+  if (!em || !em.includes('@')) { alert('Please enter a valid email address.'); return; }
+  alert('You\'re subscribed! Welcome to The Irongate Brief.');
+  document.getElementById('nl-email').value = '';
+}
+</script>
+</body>
+</html>

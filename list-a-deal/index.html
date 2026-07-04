@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>List a Deal | Irongate Markets</title>
+<meta name="description" content="List your business for sale on Irongate Markets. Reach 20,000+ verified acquirers, private equity firms, family offices, and M&A advisors in the lower middle market.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090c11'/%3E%3Crect x='4' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='25' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='4' y='8' width='24' height='3' rx='1.5' fill='%23c8a44a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#090c11;--ink2:#111520;--ink3:#191e2b;--ink4:#1f2535;--gold:#c8a44a;--gold2:#e6c472;--goldm:#8a6d2e;--slate:#64748b;--slatel:#94a3b8;--white:#ffffff;--green:#22c55e;--red:#ef4444;--border:rgba(200,164,74,.15);--borderl:rgba(255,255,255,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(9,12,17,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--borderl)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--white)}
+.logo-text span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-link{font-size:13px;color:var(--slatel);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-link:hover{color:var(--white)}
+.nav-link.active{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-sm{padding:8px 18px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-gold{background:var(--gold);color:var(--ink);border:1px solid var(--gold)}
+.btn-gold:hover{background:var(--gold2)}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid var(--border)}
+.btn-outline:hover{background:rgba(200,164,74,.08)}
+
+/* PAGE */
+.page{padding-top:68px}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--ink2) 0%,var(--ink3) 100%);border-bottom:1px solid var(--borderl);padding:64px 40px;text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;margin-bottom:16px;line-height:1.2}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:18px;color:var(--slatel);max-width:580px;margin:0 auto 32px;line-height:1.7}
+.trust-row{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--slatel)}
+.trust-item strong{color:var(--white)}
+
+/* STEPS */
+.steps-section{padding:48px 40px;background:var(--ink);border-bottom:1px solid var(--borderl)}
+.steps-section h2{font-family:'Playfair Display',serif;font-size:26px;text-align:center;margin-bottom:32px}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:900px;margin:0 auto}
+.step-card{text-align:center;padding:24px 16px;background:var(--ink2);border:1px solid var(--borderl);border-radius:12px}
+.step-num{width:36px;height:36px;border-radius:50%;background:rgba(200,164,74,.12);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--gold);margin:0 auto 12px}
+.step-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.step-desc{font-size:12px;color:var(--slatel);line-height:1.5}
+
+/* FORM SECTION */
+.form-section{max-width:800px;margin:0 auto;padding:56px 40px}
+.form-section h2{font-family:'Playfair Display',serif;font-size:30px;margin-bottom:8px}
+.form-section .form-sub{font-size:15px;color:var(--slatel);margin-bottom:40px;line-height:1.6}
+
+/* FORM */
+.form-card{background:var(--ink2);border:1px solid var(--borderl);border-radius:16px;padding:40px}
+.form-section-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--borderl)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-grid.one{grid-template-columns:1fr}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.form-group label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+.form-group label span{color:var(--red)}
+.form-group input,.form-group select,.form-group textarea{padding:11px 14px;background:rgba(255,255,255,.05);border:1.5px solid var(--borderl);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--goldm)}
+.form-group select option{background:var(--ink2)}
+.form-group textarea{resize:vertical;min-height:100px;line-height:1.6}
+.form-group .help{font-size:11px;color:var(--slate);margin-top:2px}
+.form-divider{height:1px;background:var(--borderl);margin:28px 0}
+.checkbox-group-inline{display:flex;flex-wrap:wrap;gap:10px}
+.cb-pill{display:flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(255,255,255,.04);border:1px solid var(--borderl);border-radius:6px;cursor:pointer;font-size:13px;color:var(--slatel)}
+.cb-pill:hover{border-color:var(--border);color:var(--white)}
+.cb-pill input{accent-color:var(--gold);cursor:pointer}
+.confidential-note{background:rgba(200,164,74,.06);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:24px 0;display:flex;gap:12px;align-items:flex-start}
+.cn-icon{font-size:20px;flex-shrink:0}
+.cn-text{font-size:13px;color:var(--slatel);line-height:1.6}
+.cn-text strong{color:var(--white)}
+.submit-btn{width:100%;padding:16px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em;transition:all .2s}
+.submit-btn:hover{background:var(--gold2)}
+.submit-btn:disabled{opacity:.6;cursor:default}
+
+/* SUCCESS STATE */
+#success-state{display:none;text-align:center;padding:80px 40px}
+#success-state .s-icon{font-size:56px;margin-bottom:24px;display:block}
+#success-state h2{font-family:'Playfair Display',serif;font-size:32px;margin-bottom:12px}
+#success-state p{font-size:16px;color:var(--slatel);max-width:480px;margin:0 auto 32px;line-height:1.7}
+
+/* PROOF */
+.proof-section{background:var(--ink2);border-top:1px solid var(--borderl);padding:64px 40px;text-align:center}
+.proof-section h3{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:40px}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:800px;margin:0 auto}
+.proof-card{background:var(--ink3);border:1px solid var(--borderl);border-radius:12px;padding:28px;text-align:left}
+.proof-quote{font-size:14px;color:var(--slatel);line-height:1.7;margin-bottom:20px;font-style:italic}
+.proof-author{font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px}
+.proof-role{font-size:12px;color:var(--slate)}
+
+@media(max-width:700px){.steps-grid{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.proof-grid{grid-template-columns:1fr}.hero h1{font-size:30px}.trust-row{gap:16px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#090c11"/><rect x="4" y="8" width="3" height="18" rx="1.5" fill="#c8a44a"/><rect x="25" y="8" width="3" height="18" rx="1.5" fill="#c8a44a"/><rect x="4" y="8" width="24" height="3" rx="1.5" fill="#c8a44a"/></svg>
+    <span class="logo-text">Irongate<span> Markets</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="/dashboard" class="nav-link">Dashboard</a>
+    <a href="/listings" class="nav-link">Browse Deals</a>
+    <a href="/list-a-deal" class="nav-link active">List a Deal</a>
+    <a href="/advisors" class="nav-link">Advisors</a>
+    <a href="/resources" class="nav-link">Resources</a>
+  </div>
+  <div class="nav-right" id="nav-auth">
+    <a href="#" id="nav-signin" class="btn-sm btn-outline">Sign In</a>
+    <a href="/" class="btn-sm btn-gold">Get Access</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>List Your Deal.<br><span>Reach Serious Buyers.</span></h1>
+    <p>Connect with 20,000+ verified acquirers, private equity firms, family offices, and M&A advisors actively seeking lower middle market acquisitions.</p>
+    <div class="trust-row">
+      <div class="trust-item">✅ <strong>Free</strong> to list</div>
+      <div class="trust-item">🔒 <strong>NDA-gated</strong> buyer access</div>
+      <div class="trust-item">⚡ <strong>AI deal matching</strong> included</div>
+      <div class="trust-item">📧 <strong>20K+</strong> network members</div>
+    </div>
+  </div>
+
+  <!-- STEPS -->
+  <div class="steps-section">
+    <h2>How It Works</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title">Submit Your Deal</div>
+        <div class="step-desc">Fill out the confidential listing form. Takes under 10 minutes.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">We Verify & Match</div>
+        <div class="step-desc">Our team reviews and our AI matches your deal to qualified buyers.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">Buyers Sign NDA</div>
+        <div class="step-desc">Only verified, NDA-signed members see your full details.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-title">Manage Inquiries</div>
+        <div class="step-desc">Review buyer profiles, approve conversations, close your deal.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-section" id="form-section">
+    <h2>Submit a Listing</h2>
+    <p class="form-sub">All information is kept strictly confidential. Your business name and identifying details are never shown publicly — only to NDA-signed, verified members you approve.</p>
+
+    <div class="form-card">
+      <form id="listing-form" onsubmit="submitListing(event)">
+
+        <!-- BUSINESS INFO -->
+        <div class="form-section-title">Business Information</div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Business Name <span>*</span></label>
+            <input type="text" name="business_name" placeholder="Legal or DBA name" required>
+            <span class="help">Kept confidential — not shown publicly</span>
+          </div>
+          <div class="form-group">
+            <label>Industry / Sector <span>*</span></label>
+            <select name="sector" required>
+              <option value="">Select sector…</option>
+              <option>Manufacturing</option>
+              <option>Healthcare Services</option>
+              <option>Distribution & Logistics</option>
+              <option>Technology / SaaS</option>
+              <option>Business Services</option>
+              <option>Construction & Trades</option>
+              <option>Food & Beverage</option>
+              <option>Retail & E-Commerce</option>
+              <option>Financial Services</option>
+              <option>Real Estate Services</option>
+              <option>Education & Training</option>
+              <option>Media & Marketing</option>
+              <option>Transportation</option>
+              <option>Agriculture</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>State / Region <span>*</span></label>
+            <select name="state" required>
+              <option value="">Select state…</option>
+              <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+              <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+              <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+              <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+              <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+              <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+              <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+              <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+              <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+              <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+              <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+              <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+              <option>Wisconsin</option><option>Wyoming</option><option>Remote / National</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Years in Operation <span>*</span></label>
+            <select name="years_op" required>
+              <option value="">Select…</option>
+              <option>Under 5 years</option>
+              <option>5–10 years</option>
+              <option>10–20 years</option>
+              <option>20–30 years</option>
+              <option>30+ years</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid one">
+          <div class="form-group">
+            <label>Business Description <span>*</span></label>
+            <textarea name="description" placeholder="Briefly describe what the business does, its competitive advantages, and why it's being sold. (Shown only to NDA-signed buyers)" required></textarea>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <!-- FINANCIALS -->
+        <div class="form-section-title">Financial Summary</div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Trailing 12-Month Revenue <span>*</span></label>
+            <input type="text" name="revenue" placeholder="e.g. $4,200,000" required>
+          </div>
+          <div class="form-group">
+            <label>EBITDA / Seller's Discretionary Earnings <span>*</span></label>
+            <input type="text" name="ebitda" placeholder="e.g. $980,000">
+            <span class="help">EBITDA for institutional buyers, SDE for lifestyle businesses</span>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Asking Price</label>
+            <input type="text" name="asking_price" placeholder="e.g. $3,800,000 or 'Open to offers'">
+          </div>
+          <div class="form-group">
+            <label>Revenue Trend</label>
+            <select name="revenue_trend">
+              <option value="">Select…</option>
+              <option>Growing 20%+ YoY</option>
+              <option>Growing 10–20% YoY</option>
+              <option>Stable (flat)</option>
+              <option>Slight decline</option>
+              <option>Cyclical</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Number of Employees</label>
+            <select name="employees">
+              <option value="">Select…</option>
+              <option>1–5</option><option>6–15</option><option>16–30</option>
+              <option>31–50</option><option>51–100</option><option>100–250</option><option>250+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Real Estate</label>
+            <select name="real_estate">
+              <option value="">Select…</option>
+              <option>Owned — included in asking price</option>
+              <option>Owned — available separately</option>
+              <option>Leased — lease transferable</option>
+              <option>Remote / No physical location</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <!-- DEAL DETAILS -->
+        <div class="form-section-title">Deal Details</div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Deal Type <span>*</span></label>
+            <select name="deal_type" required>
+              <option value="">Select…</option>
+              <option>Full Acquisition (100%)</option>
+              <option>Majority Stake (51–99%)</option>
+              <option>Partial / Minority Recap</option>
+              <option>Asset Sale</option>
+              <option>Management Buyout (MBO)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Seller Role Post-Close</label>
+            <select name="seller_role">
+              <option value="">Select…</option>
+              <option>Full exit — no transition</option>
+              <option>Short transition (3–6 months)</option>
+              <option>Stay on as consultant</option>
+              <option>Stay on in management role</option>
+              <option>Flexible — open to discussion</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Financing & Terms</label>
+          <div class="checkbox-group-inline">
+            <label class="cb-pill"><input type="checkbox" name="financing" value="sba"> SBA Eligible</label>
+            <label class="cb-pill"><input type="checkbox" name="financing" value="seller"> Seller Financing Available</label>
+            <label class="cb-pill"><input type="checkbox" name="financing" value="earnout"> Open to Earn-Out</label>
+            <label class="cb-pill"><input type="checkbox" name="financing" value="all_cash"> All-Cash Preferred</label>
+            <label class="cb-pill"><input type="checkbox" name="financing" value="pe"> PE / Institutional Ready</label>
+          </div>
+        </div>
+
+        <div class="form-grid one">
+          <div class="form-group">
+            <label>Why Are You Selling?</label>
+            <textarea name="reason" placeholder="Retirement, pursuing other ventures, health, partnership dissolution, etc. Buyers will ask — a clear answer builds trust." style="min-height:80px"></textarea>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <!-- CONTACT -->
+        <div class="form-section-title">Your Contact Information</div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Your Name <span>*</span></label>
+            <input type="text" name="contact_name" placeholder="First and last name" required>
+          </div>
+          <div class="form-group">
+            <label>Your Role</label>
+            <select name="contact_role">
+              <option value="">Select…</option>
+              <option>Business Owner / Seller</option>
+              <option>M&A Advisor</option>
+              <option>Business Broker</option>
+              <option>Investment Banker</option>
+              <option>Attorney / Intermediary</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Email <span>*</span></label>
+            <input type="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="(555) 555-5555">
+          </div>
+        </div>
+
+        <div class="confidential-note">
+          <span class="cn-icon">🔒</span>
+          <div class="cn-text"><strong>Confidentiality Guarantee:</strong> Your business name and identifying details are never shown publicly. Buyers must sign an NDA before seeing your full listing. You approve every conversation before it begins. Irongate Markets never shares your contact information without your explicit consent.</div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">Submit Listing for Review →</button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS STATE -->
+  <div id="success-state">
+    <span class="s-icon">✅</span>
+    <h2>Listing Submitted!</h2>
+    <p>Our team will review your submission within 1 business day. You'll receive an email at <strong id="success-email" style="color:var(--gold)"></strong> with next steps and your listing preview.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="/dashboard" class="btn-sm btn-gold" style="padding:13px 28px;font-size:14px;">Go to My Dashboard</a>
+      <a href="/listings" class="btn-sm btn-outline" style="padding:13px 28px;font-size:14px;border:1px solid var(--border)">Browse Other Listings</a>
+    </div>
+  </div>
+
+  <!-- PROOF -->
+  <div class="proof-section">
+    <h3>Trusted by Sellers and Advisors</h3>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-quote">"Listed my HVAC company and had 12 qualified buyers reach out within the first week. The NDA process filtered out the tire-kickers completely."</div>
+        <div class="proof-author">Mike R.</div>
+        <div class="proof-role">Business Owner — Texas</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-quote">"As an M&A advisor, Irongate gives my listings direct access to PE firms and family offices that move fast. The AI matching is genuinely impressive."</div>
+        <div class="proof-author">Sarah K.</div>
+        <div class="proof-role">M&A Advisor — Southeast</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-quote">"Closed a $6.2M manufacturing deal through Irongate in 94 days. The buyer found us through the platform — we never would have connected otherwise."</div>
+        <div class="proof-author">James T.</div>
+        <div class="proof-role">Seller — Manufacturing</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var SB_URL='https://greyhuwbeszlgtmmzojx.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdyZXlodXdiZXN6bGd0bW16b2p4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MDYzOTcsImV4cCI6MjA5ODI4MjM5N30.yZQ1WyDpn0lJLM0jcxV7F405NPN09KDe-8HAMvDDqJw';
+var sb;
+
+function init(){
+  if(!window.supabase)return setTimeout(init,100);
+  sb=window.supabase.createClient(SB_URL,SB_KEY);
+  sb.auth.getSession().then(function(r){
+    if(r.data&&r.data.session){
+      var u=r.data.session.user;
+      var n=u.user_metadata&&u.user_metadata.first_name?u.user_metadata.first_name:u.email.split('@')[0];
+      document.getElementById('nav-auth').innerHTML='<a href="/dashboard" class="btn-sm btn-gold">My Dashboard</a>';
+      // Pre-fill email
+      var ef=document.querySelector('input[name="email"]');
+      if(ef)ef.value=u.email;
+    }
+  });
+}
+
+document.getElementById('nav-signin').addEventListener('click',function(e){e.preventDefault();window.location.href='/?signin=1';});
+
+function submitListing(e){
+  e.preventDefault();
+  var btn=document.getElementById('submit-btn');
+  btn.textContent='Submitting…';
+  btn.disabled=true;
+
+  var data={};
+  new FormData(e.target).forEach(function(v,k){data[k]=v;});
+
+  // In production: insert into Supabase 'listings' table
+  // sb.from('listings').insert([data]).then(...)
+  // For now: simulate submission
+  setTimeout(function(){
+    document.getElementById('form-section').style.display='none';
+    document.getElementById('success-state').style.display='block';
+    document.getElementById('success-email').textContent=data.email||'your email';
+    window.scrollTo(0,0);
+  },1200);
+}
+
+var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';s.onload=init;document.head.appendChild(s);
+</script>
+</body>
+</html>

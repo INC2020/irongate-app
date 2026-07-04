@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile | Irongate Markets</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090c11'/%3E%3Crect x='4' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='25' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='4' y='8' width='24' height='3' rx='1.5' fill='%23c8a44a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#090c11;--ink2:#111520;--ink3:#191e2b;--gold:#c8a44a;--gold2:#e6c472;--slate:#64748b;--slatel:#94a3b8;--white:#fff;--green:#22c55e;--red:#ef4444;--border:rgba(200,164,74,.15);--borderl:rgba(255,255,255,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(9,12,17,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--borderl)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--white)}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-link{font-size:13px;color:var(--slatel);text-decoration:none;font-weight:500}
+.nav-link:hover{color:var(--white)}
+.btn-sm{padding:8px 18px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid var(--border)}
+/* LAYOUT */
+.page{padding-top:68px;display:flex;min-height:100vh}
+/* SIDEBAR */
+.sidebar{width:240px;flex-shrink:0;background:var(--ink2);border-right:1px solid var(--borderl);padding:32px 0;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto}
+.sb-avatar{width:64px;height:64px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:var(--ink);margin:0 auto 12px}
+.sb-name{text-align:center;font-size:15px;font-weight:700;margin-bottom:3px}
+.sb-role{text-align:center;font-size:11px;color:var(--slatel);margin-bottom:6px}
+.sb-complete{text-align:center;font-size:11px;color:var(--gold);font-weight:600;margin-bottom:24px;padding:0 20px}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin:8px 20px 24px;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s}
+.sb-section{padding:0 16px;margin-bottom:8px}
+.sb-section-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);padding:4px 8px;margin-bottom:4px}
+.sb-nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:13px;font-weight:500;color:var(--slatel);cursor:pointer;transition:all .2s;border:none;background:transparent;width:100%;text-align:left;font-family:'DM Sans',sans-serif}
+.sb-nav-item:hover{background:rgba(255,255,255,.05);color:var(--white)}
+.sb-nav-item.active{background:rgba(200,164,74,.1);color:var(--gold)}
+.sb-nav-item .icon{font-size:16px;width:20px;text-align:center}
+/* MAIN */
+.main-content{flex:1;padding:40px 48px;max-width:800px}
+.section-title{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:4px}
+.section-sub{font-size:14px;color:var(--slatel);margin-bottom:28px}
+.panel{background:var(--ink2);border:1px solid var(--borderl);border-radius:14px;padding:28px;margin-bottom:20px}
+.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--borderl)}
+.panel-header h3{font-size:14px;font-weight:700;letter-spacing:.03em}
+.panel-header .edit-btn{font-size:12px;color:var(--gold);cursor:pointer;border:1px solid var(--border);padding:5px 12px;border-radius:6px;font-weight:600;background:transparent;font-family:'DM Sans',sans-serif}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 13px;background:rgba(255,255,255,.06);border:1.5px solid var(--borderl);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
+.form-group select option{background:var(--ink2)}
+.form-group textarea{resize:vertical;min-height:90px;line-height:1.5}
+.form-group input[disabled]{opacity:.5;cursor:not-allowed}
+.save-btn{padding:10px 24px;background:var(--gold);color:var(--ink);border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+/* CRITERIA CHIPS */
+.chips-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{padding:5px 12px;border-radius:100px;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid var(--borderl);color:var(--slatel);transition:all .2s;background:transparent}
+.chip.selected{background:rgba(200,164,74,.12);border-color:rgba(200,164,74,.4);color:var(--gold)}
+.chip:hover:not(.selected){border-color:rgba(255,255,255,.2);color:var(--white)}
+/* SAVED DEALS */
+.saved-grid{display:flex;flex-direction:column;gap:10px}
+.saved-item{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid var(--borderl);border-radius:10px}
+.si-info h4{font-size:13px;font-weight:700;margin-bottom:3px}
+.si-info .meta{font-size:11px;color:var(--slatel)}
+.si-price{font-size:15px;font-weight:700;color:var(--gold)}
+.si-remove{font-size:11px;color:var(--slate);cursor:pointer;border:none;background:transparent;font-family:'DM Sans',sans-serif}
+/* DANGER */
+.danger-zone{border-color:rgba(239,68,68,.2)!important;background:rgba(239,68,68,.02)!important}
+.danger-zone .panel-header h3{color:var(--red)}
+/* GATE */
+#gate{display:none;position:fixed;inset:0;z-index:999;background:rgba(9,12,17,.92);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+.gate-box{background:var(--ink2);border:1px solid var(--border);border-radius:16px;padding:40px;max-width:400px;width:90%;text-align:center}
+.gate-box h2{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:10px}
+.gate-box p{font-size:14px;color:var(--slatel);margin-bottom:24px;line-height:1.6}
+.gate-email{width:100%;padding:11px 14px;background:rgba(255,255,255,.08);border:1.5px solid var(--borderl);border-radius:8px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:10px}
+.gate-btn{width:100%;padding:12px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gate-box">
+    <div style="font-size:36px;margin-bottom:12px">🔐</div>
+    <h2>Sign in to view your profile</h2>
+    <p>Your Irongate Markets profile is private. Enter your email to receive a secure login link.</p>
+    <input type="email" class="gate-email" id="gate-email" placeholder="your@email.com">
+    <button class="gate-btn" onclick="gateSignIn()">Send Login Link →</button>
+    <div style="margin-top:14px;font-size:12px;color:var(--slate)">No password needed. Just your email.</div>
+  </div>
+</div>
+
+<nav>
+  <a href="/" class="nav-logo">Irongate<span> Markets</span></a>
+  <div class="nav-links">
+    <a href="/dashboard" class="nav-link">Dashboard</a>
+    <a href="/listings" class="nav-link">Browse Deals</a>
+    <a href="/advisors" class="nav-link">Advisors</a>
+    <a href="/resources" class="nav-link">Resources</a>
+  </div>
+  <button onclick="signOut()" class="btn-sm btn-outline">Sign Out</button>
+</nav>
+
+<div class="page" id="app-page" style="display:none">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sb-avatar" id="sb-avatar">?</div>
+    <div class="sb-name" id="sb-name">—</div>
+    <div class="sb-role" id="sb-role">Member</div>
+    <div class="sb-complete">Profile <span id="complete-pct">35</span>% complete</div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:35%"></div></div>
+    <div class="sb-section">
+      <div class="sb-section-label">Account</div>
+      <button class="sb-nav-item active" onclick="showTab(this,'personal')"><span class="icon">👤</span>Personal Info</button>
+      <button class="sb-nav-item" onclick="showTab(this,'criteria')"><span class="icon">🎯</span>Deal Criteria</button>
+      <button class="sb-nav-item" onclick="showTab(this,'saved')"><span class="icon">🔖</span>Saved Deals</button>
+      <button class="sb-nav-item" onclick="showTab(this,'notifications')"><span class="icon">🔔</span>Notifications</button>
+    </div>
+    <div class="sb-section" style="margin-top:8px">
+      <div class="sb-section-label">Settings</div>
+      <button class="sb-nav-item" onclick="showTab(this,'security')"><span class="icon">🔐</span>Security</button>
+      <button class="sb-nav-item" onclick="showTab(this,'danger')"><span class="icon">⚠️</span>Account</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-content">
+
+    <!-- PERSONAL -->
+    <div id="tab-personal">
+      <div class="section-title">Personal Info</div>
+      <div class="section-sub">Your public-facing profile on Irongate Markets</div>
+      <div class="panel">
+        <div class="panel-header"><h3>Profile Details</h3><button class="edit-btn" onclick="saveProfile()">Save Changes</button></div>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" id="p-first" placeholder="First name"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" id="p-last" placeholder="Last name"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" id="p-email" disabled></div>
+          <div class="form-group"><label>Phone</label><input type="tel" id="p-phone" placeholder="+1 (555) 000-0000"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Company / Firm</label><input type="text" id="p-company" placeholder="Company name"></div>
+          <div class="form-group"><label>Title / Role</label><input type="text" id="p-title" placeholder="Your title"></div>
+        </div>
+        <div class="form-group"><label>Bio (optional)</label><textarea id="p-bio" placeholder="Brief bio shown on your profile to advisors and other members…"></textarea></div>
+        <div class="form-group"><label>LinkedIn URL</label><input type="url" id="p-linkedin" placeholder="https://linkedin.com/in/yourprofile"></div>
+        <div class="form-group"><label>I am primarily a…</label>
+          <select id="p-role">
+            <option value="">Select role…</option>
+            <option value="buyer">Acquirer / Buyer (individual or company)</option>
+            <option value="seller">Business Owner considering a sale</option>
+            <option value="advisor">M&A Advisor / Business Broker</option>
+            <option value="pe">Private Equity / Family Office</option>
+            <option value="lender">Lender / Capital Provider</option>
+          </select>
+        </div>
+        <button class="save-btn" onclick="saveProfile()">Save Changes →</button>
+      </div>
+    </div>
+
+    <!-- CRITERIA -->
+    <div id="tab-criteria" style="display:none">
+      <div class="section-title">Deal Criteria</div>
+      <div class="section-sub">Tell us what you're looking for — we'll surface matching deals first</div>
+      <div class="panel">
+        <div class="panel-header"><h3>Acquisition Criteria</h3><button class="edit-btn" onclick="saveCriteria()">Save</button></div>
+        <div class="form-group"><label>Target Revenue Range</label>
+          <select id="cr-rev">
+            <option>Under $1M</option>
+            <option selected>$1M – $5M</option>
+            <option>$5M – $15M</option>
+            <option>$15M – $50M</option>
+            <option>$50M+</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Target EBITDA</label>
+          <select id="cr-ebitda">
+            <option>Under $250K</option>
+            <option selected>$250K – $1M</option>
+            <option>$1M – $3M</option>
+            <option>$3M – $10M</option>
+            <option>$10M+</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Preferred Sectors</label>
+          <div class="chips-wrap" id="sector-chips">
+            <div class="chip selected" onclick="toggleChip(this)">Manufacturing</div>
+            <div class="chip" onclick="toggleChip(this)">Healthcare</div>
+            <div class="chip selected" onclick="toggleChip(this)">Business Services</div>
+            <div class="chip" onclick="toggleChip(this)">Technology / SaaS</div>
+            <div class="chip" onclick="toggleChip(this)">Distribution</div>
+            <div class="chip" onclick="toggleChip(this)">Construction</div>
+            <div class="chip" onclick="toggleChip(this)">E-Commerce</div>
+            <div class="chip" onclick="toggleChip(this)">Food & Beverage</div>
+            <div class="chip" onclick="toggleChip(this)">Financial Services</div>
+            <div class="chip" onclick="toggleChip(this)">Any Sector</div>
+          </div>
+        </div>
+        <div class="form-group"><label>Preferred Geography</label>
+          <div class="chips-wrap" id="geo-chips">
+            <div class="chip selected" onclick="toggleChip(this)">Texas</div>
+            <div class="chip" onclick="toggleChip(this)">Southeast</div>
+            <div class="chip" onclick="toggleChip(this)">Midwest</div>
+            <div class="chip" onclick="toggleChip(this)">Northeast</div>
+            <div class="chip" onclick="toggleChip(this)">West Coast</div>
+            <div class="chip selected" onclick="toggleChip(this)">National</div>
+          </div>
+        </div>
+        <div class="form-group"><label>Deal Type</label>
+          <div class="chips-wrap">
+            <div class="chip selected" onclick="toggleChip(this)">Full Acquisition</div>
+            <div class="chip" onclick="toggleChip(this)">Majority Stake</div>
+            <div class="chip" onclick="toggleChip(this)">Minority / Growth Capital</div>
+            <div class="chip" onclick="toggleChip(this)">Recapitalization</div>
+          </div>
+        </div>
+        <div class="form-group"><label>Timeline</label>
+          <select>
+            <option>Actively looking — ready to move in 3–6 months</option>
+            <option>Looking — no hard deadline</option>
+            <option>Early stage — exploring options</option>
+          </select>
+        </div>
+        <button class="save-btn" onclick="saveCriteria()">Save Criteria →</button>
+      </div>
+    </div>
+
+    <!-- SAVED -->
+    <div id="tab-saved" style="display:none">
+      <div class="section-title">Saved Deals</div>
+      <div class="section-sub">Deals you bookmarked for later review</div>
+      <div class="panel">
+        <div class="panel-header"><h3>Bookmarked Listings</h3></div>
+        <div class="saved-grid" id="saved-grid">
+          <div style="text-align:center;padding:40px 20px;color:var(--slate)">No saved deals yet. Browse listings and click the bookmark icon to save deals here.</div>
+        </div>
+        <div style="margin-top:16px;text-align:center">
+          <a href="/listings" style="font-size:13px;color:var(--gold);text-decoration:none">Browse Listings →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <div id="tab-notifications" style="display:none">
+      <div class="section-title">Notifications</div>
+      <div class="section-sub">Control what Irongate Markets sends you</div>
+      <div class="panel">
+        <div class="panel-header"><h3>Email Preferences</h3><button class="edit-btn" onclick="saveNotifs()">Save</button></div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--borderl)">
+            <div><div style="font-size:13px;font-weight:600">New AI-matched deals</div><div style="font-size:12px;color:var(--slatel)">Get notified when new deals match your criteria</div></div>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" checked> <span style="font-size:12px;color:var(--gold);font-weight:600">On</span></label>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--borderl)">
+            <div><div style="font-size:13px;font-weight:600">Deal status updates</div><div style="font-size:12px;color:var(--slatel)">When saved deals change status (under LOI, sold, etc.)</div></div>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" checked> <span style="font-size:12px;color:var(--gold);font-weight:600">On</span></label>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--borderl)">
+            <div><div style="font-size:13px;font-weight:600">The Irongate Brief</div><div style="font-size:12px;color:var(--slatel)">Weekly M&A market intelligence newsletter</div></div>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" checked> <span style="font-size:12px;color:var(--gold);font-weight:600">On</span></label>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0">
+            <div><div style="font-size:13px;font-weight:600">Advisor messages</div><div style="font-size:12px;color:var(--slatel)">When advisors or members send you a message</div></div>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" checked> <span style="font-size:12px;color:var(--gold);font-weight:600">On</span></label>
+          </div>
+        </div>
+        <button class="save-btn" style="margin-top:16px" onclick="saveNotifs()">Save Preferences →</button>
+      </div>
+    </div>
+
+    <!-- SECURITY -->
+    <div id="tab-security" style="display:none">
+      <div class="section-title">Security</div>
+      <div class="section-sub">Passwordless by design — your account is protected by verified email access</div>
+      <div class="panel">
+        <div class="panel-header"><h3>Login & Access</h3></div>
+        <div style="padding:16px;background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.15);border-radius:8px;margin-bottom:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px">✓ Passwordless authentication active</div>
+          <div style="font-size:12px;color:var(--slatel)">You sign in via a secure link sent to your email. No password to forget or breach.</div>
+        </div>
+        <div class="form-group"><label>Login Email</label><input type="email" id="sec-email" disabled></div>
+        <div style="font-size:12px;color:var(--slate);margin-top:-8px;margin-bottom:16px">To change your email, contact support@irongatemarkets.io</div>
+        <button class="save-btn" onclick="sendMagicLink()">Send a new login link to my email →</button>
+      </div>
+    </div>
+
+    <!-- DANGER -->
+    <div id="tab-danger" style="display:none">
+      <div class="section-title">Account Settings</div>
+      <div class="section-sub">Manage your membership and account data</div>
+      <div class="panel danger-zone">
+        <div class="panel-header"><h3>⚠️ Danger Zone</h3></div>
+        <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--borderl)">
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px">Delete My Account</div>
+          <div style="font-size:13px;color:var(--slatel);margin-bottom:12px">Permanently deletes your account, saved deals, and preferences. This action cannot be undone.</div>
+          <button style="padding:9px 18px;background:transparent;border:1px solid var(--red);color:var(--red);border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif" onclick="confirmDelete()">Delete Account</button>
+        </div>
+        <div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px">Export My Data</div>
+          <div style="font-size:13px;color:var(--slatel);margin-bottom:12px">Download a copy of all your data including saved deals and profile information.</div>
+          <button style="padding:9px 18px;background:transparent;border:1px solid var(--borderl);color:var(--slatel);border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">Request Data Export</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+var SUPABASE_URL = 'https://greyhuwbeszlgtmmzojx.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdyZXlodXdiZXN6bGd0bW16b2p4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MDYzOTcsImV4cCI6MjA5ODI4MjM5N30.yZQ1WyDpn0lJLM0jcxV7F405NPN09KDe-8HAMvDDqJw';
+var sb;
+
+function init() {
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  // Handle magic link in hash
+  var hash = window.location.hash;
+  if (hash.includes('access_token')) {
+    sb.auth.getSession().then(function(r) {
+      if (r.data && r.data.session) {
+        window.history.replaceState({}, '', '/profile');
+        showApp(r.data.session.user);
+      } else { showGate(); }
+    });
+    return;
+  }
+  sb.auth.getSession().then(function(r) {
+    if (r.data && r.data.session) {
+      showApp(r.data.session.user);
+    } else { showGate(); }
+  });
+}
+
+function showGate() { document.getElementById('gate').style.display = 'flex'; }
+function showApp(user) {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app-page').style.display = 'flex';
+  // Populate UI
+  var email = user.email || '';
+  var meta = user.user_metadata || {};
+  var first = meta.first_name || (email ? email.split('@')[0] : 'User');
+  document.getElementById('sb-avatar').textContent = first[0].toUpperCase();
+  document.getElementById('sb-name').textContent = (meta.first_name || '') + ' ' + (meta.last_name || '');
+  document.getElementById('sb-role').textContent = meta.role || 'Member';
+  document.getElementById('p-email').value = email;
+  document.getElementById('sec-email').value = email;
+  if (meta.first_name) document.getElementById('p-first').value = meta.first_name;
+  if (meta.last_name) document.getElementById('p-last').value = meta.last_name;
+  if (meta.phone) document.getElementById('p-phone').value = meta.phone;
+  if (meta.company) document.getElementById('p-company').value = meta.company;
+  if (meta.title) document.getElementById('p-title').value = meta.title;
+  loadSavedDeals();
+}
+
+function loadSavedDeals() {
+  try {
+    var saved = JSON.parse(localStorage.getItem('ig_saved') || '[]');
+    if (!saved.length) return;
+    var html = saved.map(function(d, i) {
+      return '<div class="saved-item"><div class="si-info"><h4>'+d.name+'</h4><div class="meta">'+d.sector+' · '+d.location+'</div></div><div style="display:flex;align-items:center;gap:12px"><span class="si-price">'+d.price+'</span><button class="si-remove" onclick="removeSaved('+i+')">Remove</button></div></div>';
+    }).join('');
+    document.getElementById('saved-grid').innerHTML = html;
+  } catch(e) {}
+}
+
+function removeSaved(idx) {
+  var saved = JSON.parse(localStorage.getItem('ig_saved') || '[]');
+  saved.splice(idx, 1);
+  localStorage.setItem('ig_saved', JSON.stringify(saved));
+  loadSavedDeals();
+}
+
+function showTab(btn, id) {
+  document.querySelectorAll('.sb-nav-item').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  ['personal','criteria','saved','notifications','security','danger'].forEach(function(t){
+    var el = document.getElementById('tab-' + t);
+    if (el) el.style.display = t === id ? 'block' : 'none';
+  });
+}
+
+function toggleChip(chip) { chip.classList.toggle('selected'); }
+
+function saveProfile() {
+  alert('Profile saved!');
+}
+function saveCriteria() { alert('Deal criteria saved! We\'ll match new listings to these preferences.'); }
+function saveNotifs() { alert('Notification preferences updated.'); }
+
+function gateSignIn() {
+  var em = document.getElementById('gate-email').value;
+  if (!em || !em.includes('@')) { alert('Please enter a valid email address.'); return; }
+  sb.auth.signInWithOtp({email: em, options: {emailRedirectTo: 'https://irongatemarkets.io/profile'}}).then(function(r) {
+    if (r.error) { alert('Error: ' + r.error.message); return; }
+    alert('Check your email for a secure login link!');
+  });
+}
+
+function sendMagicLink() {
+  var em = document.getElementById('sec-email').value;
+  sb.auth.signInWithOtp({email: em, options: {emailRedirectTo: 'https://irongatemarkets.io/profile'}}).then(function() {
+    alert('Login link sent to ' + em);
+  });
+}
+
+function signOut() {
+  if (!sb) { window.location.href = '/'; return; }
+  sb.auth.signOut().then(function() { window.location.href = '/'; });
+}
+
+function confirmDelete() {
+  if (confirm('Are you absolutely sure? This cannot be undone.')) {
+    alert('Account deletion request submitted. You will receive a confirmation email.');
+  }
+}
+
+var s = document.createElement('script');
+s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+s.onload = init;
+document.head.appendChild(s);
+</script>
+</body>
+</html>

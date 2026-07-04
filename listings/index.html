@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse Deals | Irongate Markets</title>
+<meta name="description" content="Browse lower middle market M&A deals — $500K to $50M. Search businesses for sale by sector, size, location, and deal type. Sign up free for full access.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090c11'/%3E%3Crect x='4' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='25' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='4' y='8' width='24' height='3' rx='1.5' fill='%23c8a44a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#090c11;--ink2:#111520;--ink3:#191e2b;--ink4:#1f2535;--gold:#c8a44a;--gold2:#e6c472;--goldm:#8a6d2e;--slate:#64748b;--slatel:#94a3b8;--white:#ffffff;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;--border:rgba(200,164,74,.15);--borderl:rgba(255,255,255,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(9,12,17,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--borderl)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--white)}
+.logo-text span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-link{font-size:13px;color:var(--slatel);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-link:hover{color:var(--white)}
+.nav-link.active{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-sm{padding:8px 18px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s;border:none}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold2)}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid var(--border) !important}
+.btn-outline:hover{background:rgba(200,164,74,.08)}
+
+/* LAYOUT */
+.page-wrap{display:flex;padding-top:68px;min-height:100vh}
+
+/* FILTER SIDEBAR */
+.filter-sidebar{width:260px;flex-shrink:0;border-right:1px solid var(--borderl);padding:24px;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto}
+.fs-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:16px}
+.filter-group{margin-bottom:24px}
+.fg-label{font-size:12px;font-weight:700;color:var(--slatel);margin-bottom:10px;letter-spacing:.04em}
+.range-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.range-row input{flex:1;padding:8px 10px;background:rgba(255,255,255,.05);border:1.5px solid var(--borderl);border-radius:6px;color:var(--white);font-size:13px;font-family:'DM Sans',sans-serif;outline:none;min-width:0}
+.range-row input:focus{border-color:var(--goldm)}
+.range-sep{font-size:12px;color:var(--slate);flex-shrink:0}
+.checkbox-group{display:flex;flex-direction:column;gap:8px}
+.cb-item{display:flex;align-items:center;gap:8px;cursor:pointer}
+.cb-item input[type="checkbox"]{accent-color:var(--gold);width:14px;height:14px;cursor:pointer}
+.cb-item label{font-size:13px;color:var(--slatel);cursor:pointer}
+.cb-item:hover label{color:var(--white)}
+.filter-btn{width:100%;padding:11px;background:var(--gold);color:var(--ink);border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:4px}
+.filter-btn:hover{background:var(--gold2)}
+.clear-btn{width:100%;padding:9px;background:transparent;color:var(--slate);border:1px solid var(--borderl);border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px}
+.clear-btn:hover{color:var(--slatel)}
+.filter-divider{height:1px;background:var(--borderl);margin:16px 0}
+
+/* MAIN CONTENT */
+.listings-main{flex:1;padding:28px 36px;min-width:0}
+
+/* SEARCH BAR */
+.search-bar{display:flex;gap:10px;margin-bottom:24px}
+.search-input-wrap{flex:1;position:relative}
+.search-input-wrap input{width:100%;padding:12px 16px 12px 42px;background:var(--ink2);border:1.5px solid var(--borderl);border-radius:8px;color:var(--white);font-size:14px;font-family:'DM Sans',sans-serif;outline:none}
+.search-input-wrap input:focus{border-color:var(--goldm)}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none}
+.search-btn{padding:0 24px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+.search-btn:hover{background:var(--gold2)}
+
+/* ROLE TABS */
+.role-tabs{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--borderl);border-radius:8px;overflow:hidden;background:var(--ink2)}
+.rt{padding:10px 18px;font-size:12px;font-weight:600;color:var(--slate);cursor:pointer;transition:all .2s;border:none;background:transparent;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.rt:hover{color:var(--slatel)}
+.rt.active{background:var(--gold);color:var(--ink)}
+
+/* SORT / COUNT BAR */
+.list-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.list-count{font-size:14px;color:var(--slatel)}<br>.list-count strong{color:var(--white)}
+.sort-row{display:flex;align-items:center;gap:10px}
+.sort-label{font-size:12px;color:var(--slate)}
+.sort-select{padding:7px 12px;background:var(--ink2);border:1px solid var(--borderl);border-radius:6px;color:var(--white);font-size:12px;font-family:'DM Sans',sans-serif;outline:none;cursor:pointer}
+
+/* DEAL CARDS */
+.deal-list{display:flex;flex-direction:column;gap:14px}
+.deal-row{background:var(--ink2);border:1px solid var(--borderl);border-radius:12px;padding:22px 24px;display:flex;gap:24px;cursor:pointer;transition:all .2s;text-decoration:none;align-items:flex-start}
+.deal-row:hover{border-color:rgba(200,164,74,.3);transform:translateY(-1px)}
+.dr-left{flex:1;min-width:0}
+.dr-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.dc-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.dc-badge.new{background:rgba(34,197,94,.12);color:var(--green)}
+.dc-badge.hot{background:rgba(239,68,68,.12);color:var(--red)}
+.dc-badge.matched{background:rgba(200,164,74,.12);color:var(--gold)}
+.dc-badge.featured{background:rgba(59,130,246,.12);color:var(--blue)}
+.dc-badge.sold{background:rgba(100,116,139,.12);color:var(--slatel)}
+.deal-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--white);margin-bottom:5px;line-height:1.3}
+.deal-sub{font-size:13px;color:var(--slatel);margin-bottom:14px;line-height:1.5}
+.dr-metrics{display:flex;gap:20px;flex-wrap:wrap}
+.drm{display:flex;flex-direction:column;gap:2px}
+.drm-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+.drm-val{font-size:15px;font-weight:700;color:var(--white)}
+.dr-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;flex-shrink:0;min-width:160px}
+.dr-sector{font-size:11px;color:var(--slate);font-weight:600;text-align:right}
+.dr-location{font-size:11px;color:var(--slate);text-align:right}
+.dr-nda{display:inline-block;padding:9px 18px;background:var(--gold);color:var(--ink);border-radius:6px;font-size:12px;font-weight:700;text-align:center;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.dr-nda:hover{background:var(--gold2)}
+.dr-save{padding:8px 14px;background:transparent;border:1px solid var(--borderl);border-radius:6px;font-size:11px;color:var(--slatel);cursor:pointer;font-family:'DM Sans',sans-serif}
+.dr-save:hover{color:var(--gold);border-color:var(--border)}
+.dr-date{font-size:11px;color:var(--slate)}
+
+/* PAGINATION */
+.pagination{display:flex;align-items:center;justify-content:center;gap:8px;padding:40px 0 20px}
+.page-btn{padding:8px 14px;background:var(--ink2);border:1px solid var(--borderl);border-radius:6px;font-size:13px;color:var(--slatel);cursor:pointer;font-family:'DM Sans',sans-serif}
+.page-btn:hover{color:var(--white);border-color:var(--border)}
+.page-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+/* NDA MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--ink2);border:1px solid var(--border);border-radius:16px;padding:36px;width:100%;max-width:480px;margin:20px;position:relative}
+.modal h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:8px}
+.modal p{font-size:14px;color:var(--slatel);line-height:1.7;margin-bottom:20px}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--slate);font-size:22px;cursor:pointer}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-bottom:5px}
+.form-group input,.form-group select{width:100%;padding:10px 13px;background:rgba(255,255,255,.05);border:1.5px solid var(--borderl);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:13px;outline:none}
+.form-group select option{background:var(--ink2)}
+.form-group input:focus,.form-group select:focus{border-color:var(--goldm)}
+
+/* SIGNUP GATE */
+#gate-overlay{display:none;position:fixed;inset:0;z-index:500;background:linear-gradient(180deg,transparent 0%,var(--ink) 40%);align-items:flex-end;justify-content:center;padding:60px 20px;pointer-events:none}
+#gate-overlay.show{display:flex}
+.gate-box{background:var(--ink2);border:1px solid var(--border);border-radius:16px;padding:40px 48px;text-align:center;max-width:560px;width:100%;pointer-events:all}
+.gate-box h3{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:10px}
+.gate-box p{font-size:15px;color:var(--slatel);margin-bottom:24px}
+.gate-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* SIGN-IN MODAL */
+#signin-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#090c11"/><rect x="4" y="8" width="3" height="18" rx="1.5" fill="#c8a44a"/><rect x="25" y="8" width="3" height="18" rx="1.5" fill="#c8a44a"/><rect x="4" y="8" width="24" height="3" rx="1.5" fill="#c8a44a"/></svg>
+    <span class="logo-text">Irongate<span> Markets</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="/dashboard" class="nav-link">Dashboard</a>
+    <a href="/listings" class="nav-link active">Browse Deals</a>
+    <a href="/list-a-deal" class="nav-link">List a Deal</a>
+    <a href="/advisors" class="nav-link">Advisors</a>
+    <a href="/resources" class="nav-link">Resources</a>
+  </div>
+  <div class="nav-right" id="nav-auth">
+    <a href="#" id="nav-signin" class="btn-sm btn-outline" style="border:1px solid var(--border)">Sign In</a>
+    <a href="/" class="btn-sm btn-gold">Get Access</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- FILTER SIDEBAR -->
+  <aside class="filter-sidebar">
+    <div class="fs-title">Filter Deals</div>
+
+    <div class="filter-group">
+      <div class="fg-label">Asking Price</div>
+      <div class="range-row">
+        <input type="text" placeholder="$500K" id="f-min-price">
+        <span class="range-sep">—</span>
+        <input type="text" placeholder="$50M" id="f-max-price">
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="fg-label">EBITDA</div>
+      <div class="range-row">
+        <input type="text" placeholder="Min" id="f-min-ebitda">
+        <span class="range-sep">—</span>
+        <input type="text" placeholder="Max" id="f-max-ebitda">
+      </div>
+    </div>
+
+    <div class="filter-divider"></div>
+
+    <div class="filter-group">
+      <div class="fg-label">Sector</div>
+      <div class="checkbox-group">
+        <div class="cb-item"><input type="checkbox" id="s-mfg"><label for="s-mfg">Manufacturing</label></div>
+        <div class="cb-item"><input type="checkbox" id="s-health"><label for="s-health">Healthcare Services</label></div>
+        <div class="cb-item"><input type="checkbox" id="s-dist"><label for="s-dist">Distribution & Logistics</label></div>
+        <div class="cb-item"><input type="checkbox" id="s-tech"><label for="s-tech">Technology & SaaS</label></div>
+        <div class="cb-item"><input type="checkbox" id="s-bsvc"><label for="s-bsvc">Business Services</label></div>
+        <div class="cb-item"><input type="checkbox" id="s-constr"><label for="s-constr">Construction & Trades</label></div>
+        <div class="cb-item"><input type="checkbox" id="s-food"><label for="s-food">Food & Beverage</label></div>
+        <div class="cb-item"><input type="checkbox" id="s-retail"><label for="s-retail">Retail & E-Commerce</label></div>
+      </div>
+    </div>
+
+    <div class="filter-divider"></div>
+
+    <div class="filter-group">
+      <div class="fg-label">Geography</div>
+      <div class="checkbox-group">
+        <div class="cb-item"><input type="checkbox" id="g-tx"><label for="g-tx">Texas</label></div>
+        <div class="cb-item"><input type="checkbox" id="g-fl"><label for="g-fl">Florida</label></div>
+        <div class="cb-item"><input type="checkbox" id="g-south"><label for="g-south">Southeast</label></div>
+        <div class="cb-item"><input type="checkbox" id="g-mw"><label for="g-mw">Midwest</label></div>
+        <div class="cb-item"><input type="checkbox" id="g-ne"><label for="g-ne">Northeast</label></div>
+        <div class="cb-item"><input type="checkbox" id="g-west"><label for="g-west">West Coast</label></div>
+        <div class="cb-item"><input type="checkbox" id="g-nat"><label for="g-nat">National / Remote</label></div>
+      </div>
+    </div>
+
+    <div class="filter-divider"></div>
+
+    <div class="filter-group">
+      <div class="fg-label">Deal Type</div>
+      <div class="checkbox-group">
+        <div class="cb-item"><input type="checkbox" id="dt-full"><label for="dt-full">Full Acquisition</label></div>
+        <div class="cb-item"><input type="checkbox" id="dt-partial"><label for="dt-partial">Partial / Recap</label></div>
+        <div class="cb-item"><input type="checkbox" id="dt-asset"><label for="dt-asset">Asset Sale</label></div>
+        <div class="cb-item"><input type="checkbox" id="dt-re"><label for="dt-re">Real Estate Included</label></div>
+        <div class="cb-item"><input type="checkbox" id="dt-sba"><label for="dt-sba">SBA Eligible</label></div>
+      </div>
+    </div>
+
+    <button class="filter-btn" onclick="applyFilters()">Apply Filters</button>
+    <button class="clear-btn" onclick="clearFilters()">Clear All</button>
+  </aside>
+
+  <!-- LISTINGS MAIN -->
+  <main class="listings-main">
+
+    <!-- SEARCH -->
+    <div class="search-bar">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Search by industry, keyword, location, or deal size…" onkeydown="if(event.key==='Enter')applyFilters()">
+      </div>
+      <button class="search-btn" onclick="applyFilters()">Search</button>
+    </div>
+
+    <!-- ROLE TABS -->
+    <div class="role-tabs">
+      <button class="rt active" onclick="setTab(this,'all')">All Listings</button>
+      <button class="rt" onclick="setTab(this,'acquirer')">For Acquirers & PE</button>
+      <button class="rt" onclick="setTab(this,'owner')">Seller Verified</button>
+      <button class="rt" onclick="setTab(this,'advisor')">Advisor Listed</button>
+      <button class="rt" onclick="setTab(this,'sba')">SBA Eligible</button>
+      <button class="rt" onclick="setTab(this,'matched')">AI Matched</button>
+    </div>
+
+    <!-- SORT BAR -->
+    <div class="list-meta">
+      <div class="list-count">Showing <strong id="deal-count">10,847</strong> listings</div>
+      <div class="sort-row">
+        <span class="sort-label">Sort by:</span>
+        <select class="sort-select" onchange="applyFilters()">
+          <option>Newest First</option>
+          <option>Asking Price: Low to High</option>
+          <option>Asking Price: High to Low</option>
+          <option>EBITDA: High to Low</option>
+          <option>Best Match</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- DEAL LIST -->
+    <div class="deal-list" id="deal-list">
+
+      <div class="deal-row" onclick="location.href='/deal/healthcare-tx-001'">
+        <div class="dr-left">
+          <div class="dr-top"><span class="dc-badge hot">HOT</span><span class="dc-badge matched">AI Match</span></div>
+          <div class="deal-title">Texas Multi-Site Physical Therapy Group</div>
+          <div class="deal-sub">7 locations across DFW & Houston, recurring insurance revenue, established referral network, owner retiring after 22 years.</div>
+          <div class="dr-metrics">
+            <div class="drm"><span class="drm-label">Asking</span><span class="drm-val">$12.5M</span></div>
+            <div class="drm"><span class="drm-label">Revenue</span><span class="drm-val">$9.8M</span></div>
+            <div class="drm"><span class="drm-label">EBITDA</span><span class="drm-val">$2.8M</span></div>
+            <div class="drm"><span class="drm-label">Multiple</span><span class="drm-val">4.5x</span></div>
+            <div class="drm"><span class="drm-label">YoY Growth</span><span class="drm-val" style="color:var(--green)">+18%</span></div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-sector">🏥 Healthcare Services</div>
+          <div class="dr-location">📍 Texas (DFW/Houston)</div>
+          <div class="dr-date">Listed 1 day ago</div>
+          <button class="dr-nda" onclick="openNDA(event,'Texas Multi-Site Physical Therapy Group')">Sign NDA →</button>
+          <button class="dr-save" onclick="saveDeal(event,'healthcare-tx-001')">🔖 Save</button>
+        </div>
+      </div>
+
+      <div class="deal-row" onclick="location.href='/deal/mfg-midwest-001'">
+        <div class="dr-left">
+          <div class="dr-top"><span class="dc-badge matched">AI Match</span><span class="dc-badge featured">Featured</span></div>
+          <div class="deal-title">Midwest Precision CNC Manufacturing — Aerospace & Defense</div>
+          <div class="deal-sub">38-year-old precision machining company, 80+ active customers in aerospace and defense, $3M in backlog, real estate available separately.</div>
+          <div class="dr-metrics">
+            <div class="drm"><span class="drm-label">Asking</span><span class="drm-val">$8.4M</span></div>
+            <div class="drm"><span class="drm-label">Revenue</span><span class="drm-val">$11.2M</span></div>
+            <div class="drm"><span class="drm-label">EBITDA</span><span class="drm-val">$2.1M</span></div>
+            <div class="drm"><span class="drm-label">Multiple</span><span class="drm-val">4.0x</span></div>
+            <div class="drm"><span class="drm-label">Employees</span><span class="drm-val">64</span></div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-sector">🏭 Manufacturing</div>
+          <div class="dr-location">📍 Ohio</div>
+          <div class="dr-date">Listed 3 days ago</div>
+          <button class="dr-nda" onclick="openNDA(event,'Midwest Precision CNC Manufacturing')">Sign NDA →</button>
+          <button class="dr-save" onclick="saveDeal(event,'mfg-midwest-001')">🔖 Save</button>
+        </div>
+      </div>
+
+      <div class="deal-row" onclick="location.href='/deal/distribution-sw-001'">
+        <div class="dr-left">
+          <div class="dr-top"><span class="dc-badge new">NEW</span></div>
+          <div class="deal-title">Industrial Distribution — Southwest US, Long-Term Vendor Contracts</div>
+          <div class="deal-sub">B2B distribution of industrial supplies. 40+ vendor contracts, 90% repeat customers, minimal inventory risk. SBA pre-qualified.</div>
+          <div class="dr-metrics">
+            <div class="drm"><span class="drm-label">Asking</span><span class="drm-val">$15.0M</span></div>
+            <div class="drm"><span class="drm-label">Revenue</span><span class="drm-val">$28.4M</span></div>
+            <div class="drm"><span class="drm-label">EBITDA</span><span class="drm-val">$2.4M</span></div>
+            <div class="drm"><span class="drm-label">Multiple</span><span class="drm-val">6.3x</span></div>
+            <div class="drm"><span class="drm-label">SBA</span><span class="drm-val" style="color:var(--green)">Eligible</span></div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-sector">🚚 Distribution</div>
+          <div class="dr-location">📍 Texas / New Mexico</div>
+          <div class="dr-date">Listed today</div>
+          <button class="dr-nda" onclick="openNDA(event,'Industrial Distribution — Southwest')">Sign NDA →</button>
+          <button class="dr-save" onclick="saveDeal(event,'distribution-sw-001')">🔖 Save</button>
+        </div>
+      </div>
+
+      <div class="deal-row" onclick="location.href='/deal/saas-fintech-001'">
+        <div class="dr-left">
+          <div class="dr-top"><span class="dc-badge featured">Featured</span></div>
+          <div class="deal-title">B2B SaaS — Fintech Compliance Platform, $2.1M ARR</div>
+          <div class="deal-sub">Regulatory compliance software for community banks and credit unions. 94% retention, 3-year average contract length, no single customer over 8% of revenue.</div>
+          <div class="dr-metrics">
+            <div class="drm"><span class="drm-label">Asking</span><span class="drm-val">$18.9M</span></div>
+            <div class="drm"><span class="drm-label">ARR</span><span class="drm-val">$2.1M</span></div>
+            <div class="drm"><span class="drm-label">EBITDA</span><span class="drm-val">$1.4M</span></div>
+            <div class="drm"><span class="drm-label">Multiple</span><span class="drm-val">9.0x ARR</span></div>
+            <div class="drm"><span class="drm-label">Churn</span><span class="drm-val" style="color:var(--green)">6%/yr</span></div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-sector">💻 Technology / SaaS</div>
+          <div class="dr-location">📍 Remote / National</div>
+          <div class="dr-date">Listed 5 days ago</div>
+          <button class="dr-nda" onclick="openNDA(event,'B2B SaaS Fintech Compliance Platform')">Sign NDA →</button>
+          <button class="dr-save" onclick="saveDeal(event,'saas-fintech-001')">🔖 Save</button>
+        </div>
+      </div>
+
+      <div class="deal-row" onclick="location.href='/deal/hvac-tx-001'">
+        <div class="dr-left">
+          <div class="dr-top"><span class="dc-badge new">NEW</span></div>
+          <div class="deal-title">HVAC Services Company — Residential & Commercial, Texas</div>
+          <div class="deal-sub">Established HVAC installation, repair, and maintenance business. Recurring service contract revenue, 6 service vehicles, licensed technicians, strong Google reputation (4.9★, 800+ reviews).</div>
+          <div class="dr-metrics">
+            <div class="drm"><span class="drm-label">Asking</span><span class="drm-val">$3.2M</span></div>
+            <div class="drm"><span class="drm-label">Revenue</span><span class="drm-val">$4.1M</span></div>
+            <div class="drm"><span class="drm-label">EBITDA</span><span class="drm-val">$820K</span></div>
+            <div class="drm"><span class="drm-label">Multiple</span><span class="drm-val">3.9x</span></div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-sector">🔧 Construction & Trades</div>
+          <div class="dr-location">📍 Austin, TX</div>
+          <div class="dr-date">Listed 2 days ago</div>
+          <button class="dr-nda" onclick="openNDA(event,'HVAC Services Company Texas')">Sign NDA →</button>
+          <button class="dr-save" onclick="saveDeal(event,'hvac-tx-001')">🔖 Save</button>
+        </div>
+      </div>
+
+      <div class="deal-row" onclick="location.href='/deal/staffing-001'">
+        <div class="dr-left">
+          <div class="dr-top"><span class="dc-badge hot">HOT</span></div>
+          <div class="deal-title">Healthcare Staffing Agency — 3 States, Travel Nurse Specialization</div>
+          <div class="deal-sub">Regional healthcare staffing firm placing travel nurses and allied health professionals. 28% gross margins, proprietary candidate database of 4,200+ nurses, contracts with 40+ hospital systems.</div>
+          <div class="dr-metrics">
+            <div class="drm"><span class="drm-label">Asking</span><span class="drm-val">$7.5M</span></div>
+            <div class="drm"><span class="drm-label">Revenue</span><span class="drm-val">$19.2M</span></div>
+            <div class="drm"><span class="drm-label">EBITDA</span><span class="drm-val">$1.9M</span></div>
+            <div class="drm"><span class="drm-label">Multiple</span><span class="drm-val">3.9x</span></div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-sector">🏥 Healthcare Services</div>
+          <div class="dr-location">📍 TX, FL, GA</div>
+          <div class="dr-date">Listed 4 days ago</div>
+          <button class="dr-nda" onclick="openNDA(event,'Healthcare Staffing Agency')">Sign NDA →</button>
+          <button class="dr-save" onclick="saveDeal(event,'staffing-001')">🔖 Save</button>
+        </div>
+      </div>
+
+      <div class="deal-row" onclick="location.href='/deal/ecomm-001'">
+        <div class="dr-left">
+          <div class="dr-top"><span class="dc-badge new">NEW</span></div>
+          <div class="deal-title">E-Commerce Brand — Home Goods, $6.8M Revenue, Amazon + DTC</div>
+          <div class="deal-sub">Established home goods brand with Amazon (70%) and Shopify DTC (30%) sales. Owned proprietary designs, 3 issued patents, fully remote operations, low SKU count (22 products).</div>
+          <div class="dr-metrics">
+            <div class="drm"><span class="drm-label">Asking</span><span class="drm-val">$4.1M</span></div>
+            <div class="drm"><span class="drm-label">Revenue</span><span class="drm-val">$6.8M</span></div>
+            <div class="drm"><span class="drm-label">EBITDA</span><span class="drm-val">$1.1M</span></div>
+            <div class="drm"><span class="drm-label">Multiple</span><span class="drm-val">3.7x</span></div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-sector">🛒 E-Commerce</div>
+          <div class="dr-location">📍 Remote / National</div>
+          <div class="dr-date">Listed today</div>
+          <button class="dr-nda" onclick="openNDA(event,'E-Commerce Home Goods Brand')">Sign NDA →</button>
+          <button class="dr-save" onclick="saveDeal(event,'ecomm-001')">🔖 Save</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SIGNUP GATE (blurs after 7 listings) -->
+    <div id="gate-overlay">
+      <div class="gate-box">
+        <h3>10,840 More Deals Available</h3>
+        <p>Create a free account to access full deal details, sign NDAs, and receive AI-matched deal flow to your inbox daily.</p>
+        <div class="gate-actions">
+          <a href="/" class="btn-sm btn-gold" style="padding:13px 32px;font-size:14px;">Create Free Account</a>
+          <button onclick="document.getElementById('signin-modal').style.display='flex'" class="btn-sm btn-outline" style="padding:13px 32px;font-size:14px;border:1px solid var(--border)">Sign In</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGINATION (shown when logged in) -->
+    <div class="pagination" id="pagination" style="display:none">
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn">…</button>
+      <button class="page-btn">108</button>
+      <button class="page-btn">Next →</button>
+    </div>
+
+  </main>
+</div>
+
+<!-- NDA MODAL -->
+<div class="modal-overlay" id="nda-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('nda-modal').classList.remove('open')">×</button>
+    <h3>Confidentiality Agreement</h3>
+    <p>By signing, you agree to keep all information about <strong id="nda-deal-name" style="color:var(--gold)"></strong> strictly confidential and not to share with third parties without written consent.</p>
+    <div class="form-group">
+      <label>Full Legal Name</label>
+      <input type="text" id="nda-name" placeholder="Your full legal name">
+    </div>
+    <div class="form-group">
+      <label>Company / Firm</label>
+      <input type="text" id="nda-company" placeholder="Company name">
+    </div>
+    <div class="form-group">
+      <label>Role</label>
+      <select id="nda-role">
+        <option value="">Select your role…</option>
+        <option>Independent Buyer / Entrepreneur</option>
+        <option>Private Equity / Search Fund</option>
+        <option>Strategic Acquirer</option>
+        <option>Family Office</option>
+        <option>M&A Advisor / Business Broker</option>
+        <option>Lender / Capital Provider</option>
+      </select>
+    </div>
+    <div style="font-size:12px;color:var(--slate);margin-bottom:20px;line-height:1.6">Electronic signature via submission below. This NDA is legally binding under applicable state law.</div>
+    <button class="filter-btn" onclick="signNDA()" style="margin-top:0">Sign NDA & Access Deal Room →</button>
+  </div>
+</div>
+
+<!-- SIGN IN MODAL -->
+<div id="signin-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+  <div style="background:var(--ink2);border:1px solid var(--border);border-radius:16px;padding:40px;width:100%;max-width:420px;margin:20px;position:relative;">
+    <button onclick="document.getElementById('signin-modal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;color:var(--slate);font-size:22px;cursor:pointer">×</button>
+    <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:6px;">Welcome Back</div>
+    <div style="font-size:14px;color:var(--slatel);margin-bottom:24px;">Enter your email to receive a secure sign-in link.</div>
+    <div style="margin-bottom:14px">
+      <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-bottom:6px">Email Address</label>
+      <input id="signin-email" type="email" placeholder="you@yourfirm.com" style="width:100%;padding:12px 14px;background:rgba(255,255,255,.05);border:1.5px solid var(--borderl);border-radius:8px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:15px;outline:none">
+    </div>
+    <button onclick="doSignIn()" style="width:100%;padding:14px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">Send Sign-In Link →</button>
+    <div id="signin-msg" style="margin-top:12px;font-size:13px;text-align:center;display:none"></div>
+  </div>
+</div>
+
+<script>
+var SB_URL='https://greyhuwbeszlgtmmzojx.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdyZXlodXdiZXN6bGd0bW16b2p4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MDYzOTcsImV4cCI6MjA5ODI4MjM5N30.yZQ1WyDpn0lJLM0jcxV7F405NPN09KDe-8HAMvDDqJw';
+var sb,isLoggedIn=false;
+
+function init(){
+  if(!window.supabase)return setTimeout(init,100);
+  sb=window.supabase.createClient(SB_URL,SB_KEY);
+  sb.auth.getSession().then(function(r){
+    if(r.data&&r.data.session){setLoggedIn(r.data.session.user);}
+    else{showGate();}
+  });
+  sb.auth.onAuthStateChange(function(e,s){if(e==='SIGNED_IN'&&s)setLoggedIn(s.user);});
+}
+
+function setLoggedIn(user){
+  isLoggedIn=true;
+  var n=user.user_metadata&&user.user_metadata.first_name?user.user_metadata.first_name:user.email.split('@')[0];
+  document.getElementById('nav-auth').innerHTML='<span style="font-size:13px;color:var(--slatel)">Hi, '+n+'</span><a href="/dashboard" class="btn-sm btn-gold">My Dashboard</a>';
+  document.getElementById('pagination').style.display='flex';
+}
+
+function showGate(){
+  document.getElementById('gate-overlay').classList.add('show');
+}
+
+function setTab(el,t){document.querySelectorAll('.rt').forEach(function(r){r.classList.remove('active')});el.classList.add('active');}
+function applyFilters(){/* production: filter deal-list based on inputs */}
+function clearFilters(){document.querySelectorAll('.filter-group input[type="text"]').forEach(function(i){i.value=''});document.querySelectorAll('input[type="checkbox"]').forEach(function(c){c.checked=false;});}
+
+function openNDA(e,name){
+  e.stopPropagation();
+  if(!isLoggedIn){document.getElementById('signin-modal').style.display='flex';return;}
+  document.getElementById('nda-deal-name').textContent=name;
+  document.getElementById('nda-modal').classList.add('open');
+}
+
+function signNDA(){
+  var n=document.getElementById('nda-name').value.trim();
+  var c=document.getElementById('nda-company').value.trim();
+  var r=document.getElementById('nda-role').value;
+  if(!n||!c||!r){alert('Please fill in all fields.');return;}
+  document.getElementById('nda-modal').classList.remove('open');
+  alert('NDA signed! Full deal room access would now be unlocked. (Deal room coming soon)');
+}
+
+function saveDeal(e,id){
+  e.stopPropagation();
+  var saved=JSON.parse(localStorage.getItem('ig_saved')||'[]');
+  if(!saved.includes(id)){saved.push(id);localStorage.setItem('ig_saved',JSON.stringify(saved));e.target.textContent='✅ Saved';}
+  else{e.target.textContent='✅ Saved';}
+}
+
+function doSignIn(){
+  var email=document.getElementById('signin-email').value.trim();
+  var msg=document.getElementById('signin-msg');
+  if(!email||!email.includes('@')){msg.textContent='Please enter a valid email.';msg.style.color='#ef4444';msg.style.display='block';return;}
+  sb.auth.signInWithOtp({email:email,options:{emailRedirectTo:'https://irongatemarkets.io/listings'}}).then(function(r){
+    if(r.error){msg.textContent=r.error.message;msg.style.color='#ef4444';}
+    else{msg.textContent='Check your email — sign-in link sent!';msg.style.color='#22c55e';}
+    msg.style.display='block';
+  });
+}
+
+document.getElementById('nav-signin').addEventListener('click',function(e){e.preventDefault();document.getElementById('signin-modal').style.display='flex';});
+
+var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';s.onload=init;document.head.appendChild(s);
+</script>
+</body>
+</html>

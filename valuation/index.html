@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Valuation Calculator | Irongate Markets</title>
+<meta name="description" content="Estimate your business value in 60 seconds. Our LMM valuation calculator uses real market multiples from closed transactions to give you a credible range.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090c11'/%3E%3Crect x='4' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='25' y='8' width='3' height='18' rx='1.5' fill='%23c8a44a'/%3E%3Crect x='4' y='8' width='24' height='3' rx='1.5' fill='%23c8a44a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#090c11;--ink2:#111520;--ink3:#191e2b;--gold:#c8a44a;--gold2:#e6c472;--slate:#64748b;--slatel:#94a3b8;--white:#fff;--green:#22c55e;--border:rgba(200,164,74,.15);--borderl:rgba(255,255,255,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(9,12,17,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--borderl)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--white)}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-link{font-size:13px;color:var(--slatel);text-decoration:none;font-weight:500}
+.nav-link:hover{color:var(--white)}
+.nav-link.active{color:var(--gold)}
+.btn-sm{padding:8px 18px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif}
+.btn-gold{background:var(--gold);color:var(--ink);border:1px solid var(--gold)}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid var(--border)}
+.page{padding-top:68px}
+.hero{padding:56px 80px 40px;text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;margin-bottom:14px}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:16px;color:var(--slatel);max-width:520px;margin:0 auto;line-height:1.7}
+/* CALC LAYOUT */
+.calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1100px;margin:40px auto;padding:0 40px 80px;align-items:start}
+/* FORM */
+.calc-form{background:var(--ink2);border:1px solid var(--borderl);border-radius:14px 0 0 14px;padding:36px}
+.calc-form h2{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--borderl)}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-bottom:7px}
+.form-group input,.form-group select{width:100%;padding:11px 14px;background:rgba(255,255,255,.06);border:1.5px solid var(--borderl);border-radius:7px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus{border-color:var(--gold)}
+.form-group select option{background:var(--ink2)}
+.form-group .help{font-size:11px;color:var(--slate);margin-top:4px}
+.slider-wrap{margin-top:6px}
+.slider-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.slider-val{font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--gold)}
+input[type=range]{width:100%;accent-color:var(--gold);height:4px}
+.calc-btn{width:100%;padding:13px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;transition:all .2s}
+.calc-btn:hover{background:var(--gold2)}
+/* RESULTS */
+.calc-results{background:linear-gradient(135deg,var(--ink3) 0%,var(--ink2) 100%);border:1px solid var(--borderl);border-left:none;border-radius:0 14px 14px 0;padding:36px;min-height:500px}
+.calc-results h2{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--borderl)}
+.result-range{text-align:center;padding:28px;background:rgba(200,164,74,.06);border:1px solid var(--border);border-radius:12px;margin-bottom:24px}
+.rr-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:10px}
+.rr-range{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);margin-bottom:6px}
+.rr-sub{font-size:13px;color:var(--slatel)}
+.multiple-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:24px}
+.mult-card{background:rgba(255,255,255,.04);border:1px solid var(--borderl);border-radius:8px;padding:14px;text-align:center}
+.mult-label{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+.mult-val{font-size:18px;font-weight:700;color:var(--white)}
+.mult-sub{font-size:10px;color:var(--slate);margin-top:2px}
+.insight-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.insight-item{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--slatel);padding:10px 12px;background:rgba(255,255,255,.03);border-radius:7px;line-height:1.5}
+.insight-icon{flex-shrink:0;font-size:15px}
+.result-empty{text-align:center;padding:60px 20px;color:var(--slate)}
+.result-empty .icon{font-size:40px;margin-bottom:12px;display:block;opacity:.5}
+/* METHODOLOGY */
+.method-section{background:var(--ink2);border-top:1px solid var(--borderl);padding:56px 80px}
+.method-section h2{font-family:'Playfair Display',serif;font-size:26px;text-align:center;margin-bottom:40px}
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto}
+.method-card{background:var(--ink3);border:1px solid var(--borderl);border-radius:12px;padding:24px}
+.method-card h3{font-size:14px;font-weight:700;margin-bottom:8px;color:var(--gold)}
+.method-card p{font-size:13px;color:var(--slatel);line-height:1.6}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Irongate<span> Markets</span></a>
+  <div class="nav-links">
+    <a href="/dashboard" class="nav-link">Dashboard</a>
+    <a href="/listings" class="nav-link">Browse Deals</a>
+    <a href="/list-a-deal" class="nav-link">List a Deal</a>
+    <a href="/advisors" class="nav-link">Advisors</a>
+    <a href="/resources" class="nav-link active">Resources</a>
+  </div>
+  <div style="display:flex;gap:10px">
+    <a href="/" class="btn-sm btn-outline">Sign In</a>
+    <a href="/" class="btn-sm btn-gold">Get Access</a>
+  </div>
+</nav>
+<div class="page">
+  <div class="hero">
+    <h1>Business <span>Valuation Calculator</span></h1>
+    <p>Get a credible valuation range in 60 seconds based on real market multiples from 2,400+ closed lower middle market transactions.</p>
+  </div>
+
+  <div class="calc-wrap">
+    <!-- FORM -->
+    <div class="calc-form">
+      <h2>📊 Enter Your Financials</h2>
+
+      <div class="form-group">
+        <label>Industry / Sector</label>
+        <select id="c-sector" onchange="calculate()">
+          <option value="">Select sector…</option>
+          <option value="mfg">Manufacturing</option>
+          <option value="health">Healthcare Services</option>
+          <option value="dist">Distribution & Logistics</option>
+          <option value="tech">Technology / SaaS</option>
+          <option value="bsvc">Business Services</option>
+          <option value="constr">Construction & Trades</option>
+          <option value="food">Food & Beverage</option>
+          <option value="ecomm">E-Commerce</option>
+          <option value="fin">Financial Services</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Annual Revenue (TTM)</label>
+        <div class="slider-wrap">
+          <div class="slider-row"><span style="font-size:12px;color:var(--slate)">Revenue</span><span class="slider-val" id="rev-val">$2,500,000</span></div>
+          <input type="range" id="c-revenue" min="500000" max="50000000" step="100000" value="2500000" oninput="updateSlider('c-revenue','rev-val','$'); calculate()">
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--slate);margin-top:4px"><span>$500K</span><span>$50M</span></div>
+        </div>
+        <div class="help">Trailing 12-month gross revenue</div>
+      </div>
+
+      <div class="form-group">
+        <label>EBITDA / Owner Earnings (TTM)</label>
+        <div class="slider-wrap">
+          <div class="slider-row"><span style="font-size:12px;color:var(--slate)">EBITDA</span><span class="slider-val" id="ebitda-val">$500,000</span></div>
+          <input type="range" id="c-ebitda" min="100000" max="10000000" step="50000" value="500000" oninput="updateSlider('c-ebitda','ebitda-val','$'); calculate()">
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--slate);margin-top:4px"><span>$100K</span><span>$10M</span></div>
+        </div>
+        <div class="help">Add back owner salary, depreciation, and one-time items</div>
+      </div>
+
+      <div class="form-group">
+        <label>Growth Rate (YoY Revenue)</label>
+        <div class="slider-wrap">
+          <div class="slider-row"><span style="font-size:12px;color:var(--slate)">Growth</span><span class="slider-val" id="growth-val">10%</span></div>
+          <input type="range" id="c-growth" min="-20" max="50" step="1" value="10" oninput="updateSlider('c-growth','growth-val',''); calculate()">
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--slate);margin-top:4px"><span>-20%</span><span>+50%</span></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Customer Concentration</label>
+        <select id="c-concentration" onchange="calculate()">
+          <option value="low">Low — No customer over 10% of revenue</option>
+          <option value="med" selected>Medium — Largest customer is 10–25%</option>
+          <option value="high">High — Largest customer is 25%+</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Business Age</label>
+        <select id="c-age" onchange="calculate()">
+          <option value="new">Under 5 years</option>
+          <option value="mid" selected>5–15 years</option>
+          <option value="est">15+ years (established)</option>
+        </select>
+      </div>
+
+      <button class="calc-btn" onclick="calculate()">Calculate My Valuation →</button>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="calc-results">
+      <h2>📈 Your Valuation Estimate</h2>
+      <div id="result-empty" class="result-empty">
+        <span class="icon">🏢</span>
+        <p>Fill in your financial details and select a sector to see your estimated valuation range.</p>
+      </div>
+      <div id="result-content" style="display:none">
+        <div class="result-range">
+          <div class="rr-label">Estimated Value Range</div>
+          <div class="rr-range" id="r-range">–</div>
+          <div class="rr-sub" id="r-midpoint">Midpoint: –</div>
+        </div>
+        <div class="multiple-grid">
+          <div class="mult-card">
+            <div class="mult-label">Low Multiple</div>
+            <div class="mult-val" id="r-low">–</div>
+            <div class="mult-sub">Conservative</div>
+          </div>
+          <div class="mult-card">
+            <div class="mult-label">Market Multiple</div>
+            <div class="mult-val" id="r-mid">–</div>
+            <div class="mult-sub" style="color:var(--gold)">Most Likely</div>
+          </div>
+          <div class="mult-card">
+            <div class="mult-label">High Multiple</div>
+            <div class="mult-val" id="r-high">–</div>
+            <div class="mult-sub">Premium</div>
+          </div>
+        </div>
+        <div class="insight-list" id="r-insights"></div>
+        <a href="/list-a-deal" style="display:block;padding:13px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:center;text-decoration:none">List Your Business — Reach 20K+ Buyers →</a>
+        <div style="margin-top:12px;text-align:center">
+          <a href="/advisors" style="font-size:12px;color:var(--gold);text-decoration:none">Or find an M&A advisor to get a formal opinion of value</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="method-section">
+    <h2>How We Calculate</h2>
+    <div class="method-grid">
+      <div class="method-card">
+        <h3>Market Multiples</h3>
+        <p>Valuations are based on EBITDA multiples from 2,400+ actual closed lower middle market transactions, segmented by sector and deal size.</p>
+      </div>
+      <div class="method-card">
+        <h3>Value Drivers</h3>
+        <p>We adjust the base multiple for growth rate, customer concentration, business age, and sector-specific factors that buyers pay premium for.</p>
+      </div>
+      <div class="method-card">
+        <h3>For Reference Only</h3>
+        <p>This tool provides a directional range, not a formal opinion of value. For a binding valuation, work with a certified M&A advisor or appraiser.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var MULTIPLES = {
+  mfg:    {low:3.5, mid:4.5, high:5.5},
+  health: {low:4.0, mid:5.5, high:7.5},
+  dist:   {low:3.0, mid:4.0, high:5.5},
+  tech:   {low:5.0, mid:7.5, high:12.0},
+  bsvc:   {low:3.5, mid:5.0, high:7.0},
+  constr: {low:2.5, mid:3.5, high:4.5},
+  food:   {low:2.5, mid:3.5, high:5.0},
+  ecomm:  {low:2.5, mid:3.5, high:5.0},
+  fin:    {low:4.0, mid:6.0, high:9.0}
+};
+
+function fmt(n) {
+  if(n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  return '$' + (n/1000).toFixed(0) + 'K';
+}
+
+function updateSlider(id, valId, prefix) {
+  var v = parseFloat(document.getElementById(id).value);
+  var el = document.getElementById(valId);
+  if (prefix === '$') el.textContent = fmt(v);
+  else el.textContent = (v >= 0 ? '+' : '') + v + '%';
+}
+
+function calculate() {
+  var sector = document.getElementById('c-sector').value;
+  if (!sector) return;
+
+  var ebitda = parseFloat(document.getElementById('c-ebitda').value);
+  var growth = parseFloat(document.getElementById('c-growth').value);
+  var conc = document.getElementById('c-concentration').value;
+  var age = document.getElementById('c-age').value;
+
+  var m = MULTIPLES[sector];
+  if (!m) return;
+
+  // Adjustments
+  var adj = 0;
+  if (growth > 20) adj += 0.5;
+  else if (growth > 10) adj += 0.25;
+  else if (growth < 0) adj -= 0.5;
+  if (conc === 'low') adj += 0.25;
+  else if (conc === 'high') adj -= 0.5;
+  if (age === 'est') adj += 0.25;
+  else if (age === 'new') adj -= 0.25;
+
+  var lo = (m.low + adj) * ebitda;
+  var mi = (m.mid + adj) * ebitda;
+  var hi = (m.high + adj) * ebitda;
+
+  document.getElementById('r-range').textContent = fmt(lo) + ' – ' + fmt(hi);
+  document.getElementById('r-midpoint').textContent = 'Midpoint: ' + fmt(mi);
+  document.getElementById('r-low').textContent = (m.low + adj).toFixed(1) + 'x';
+  document.getElementById('r-mid').textContent = (m.mid + adj).toFixed(1) + 'x';
+  document.getElementById('r-high').textContent = (m.high + adj).toFixed(1) + 'x';
+
+  // Insights
+  var insights = [];
+  if (growth > 15) insights.push({icon:'🚀', text:'Strong growth trajectory (+' + growth + '% YoY) commands a premium multiple in this sector.'});
+  if (conc === 'low') insights.push({icon:'✅', text:'Low customer concentration is a major value driver — buyers pay up for revenue diversification.'});
+  if (conc === 'high') insights.push({icon:'⚠️', text:'High customer concentration will reduce your multiple. Consider diversifying before going to market.'});
+  if (age === 'est') insights.push({icon:'🏛️', text:'Established history (15+ years) signals stability and reduces perceived risk for buyers.'});
+  if (sector === 'tech') insights.push({icon:'💻', text:'Tech businesses trade at premium multiples due to recurring revenue and scalability.'});
+  insights.push({icon:'📋', text:'Seller financing or earnout structures can bridge any valuation gap with the right buyer.'});
+
+  var html = insights.slice(0,3).map(function(i){
+    return '<div class="insight-item"><span class="insight-icon">'+i.icon+'</span><span>'+i.text+'</span></div>';
+  }).join('');
+  document.getElementById('r-insights').innerHTML = html;
+
+  document.getElementById('result-empty').style.display = 'none';
+  document.getElementById('result-content').style.display = 'block';
+}
+</script>
+</body>
+</html>
