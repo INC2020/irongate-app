@@ -8,8 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+html,body{scroll-behavior:smooth}
 :root{--ink:#090c11;--ink2:#111520;--ink3:#191e2b;--gold:#c8a44a;--gold2:#e6c472;--slate:#64748b;--slatel:#94a3b8;--white:#fff;--green:#22c55e;--red:#ef4444;--border:rgba(200,164,74,.15);--borderl:rgba(255,255,255,.06)}
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box}body{overflow:hidden}
 body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh}
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(9,12,17,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--borderl)}
@@ -23,7 +24,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 /* LAYOUT */
 .page{padding-top:68px;display:flex;min-height:100vh}
 /* SIDEBAR */
-.sidebar{width:240px;flex-shrink:0;background:var(--ink2);border-right:1px solid var(--borderl);padding:32px 0;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto}
+.sidebar{width:240px;flex-shrink:0;background:var(--ink2);border-right:1px solid var(--borderl);padding:32px 0;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto;-webkit-overflow-scrolling:touch;will-change:scroll-position;scroll-behavior:smooth}
 .sb-avatar{width:64px;height:64px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:var(--ink);margin:0 auto 12px}
 .sb-name{text-align:center;font-size:15px;font-weight:700;margin-bottom:3px}
 .sb-role{text-align:center;font-size:11px;color:var(--slatel);margin-bottom:6px}
@@ -32,7 +33,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .progress-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s}
 .sb-section{padding:0 16px;margin-bottom:8px}
 .sb-section-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);padding:4px 8px;margin-bottom:4px}
-.sb-nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:13px;font-weight:500;color:var(--slatel);cursor:pointer;transition:all .2s;border:none;background:transparent;width:100%;text-align:left;font-family:'DM Sans',sans-serif}
+.sb-nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:13px;font-weight:500;color:var(--slatel);cursor:pointer;transition:opacity .2s,transform .2s,border-color .2s,background-color .2s,color .2s;border:none;background:transparent;width:100%;text-align:left;font-family:'DM Sans',sans-serif}
 .sb-nav-item:hover{background:rgba(255,255,255,.05);color:var(--white)}
 .sb-nav-item.active{background:rgba(200,164,74,.1);color:var(--gold)}
 .sb-nav-item .icon{font-size:16px;width:20px;text-align:center}
@@ -52,10 +53,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .form-group select option{background:var(--ink2)}
 .form-group textarea{resize:vertical;min-height:90px;line-height:1.5}
 .form-group input[disabled]{opacity:.5;cursor:not-allowed}
-.save-btn{padding:10px 24px;background:var(--gold);color:var(--ink);border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.save-btn{padding:10px 24px;background:var(--gold);color:var(--ink);border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .2s,transform .2s,border-color .2s,background-color .2s,color .2s}
 /* CRITERIA CHIPS */
 .chips-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.chip{padding:5px 12px;border-radius:100px;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid var(--borderl);color:var(--slatel);transition:all .2s;background:transparent}
+.chip{padding:5px 12px;border-radius:100px;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid var(--borderl);color:var(--slatel);transition:opacity .2s,transform .2s,border-color .2s,background-color .2s,color .2s;background:transparent}
 .chip.selected{background:rgba(200,164,74,.12);border-color:rgba(200,164,74,.4);color:var(--gold)}
 .chip:hover:not(.selected){border-color:rgba(255,255,255,.2);color:var(--white)}
 /* SAVED DEALS */

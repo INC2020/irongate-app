@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+html{scroll-behavior:smooth;height:100%}body{min-height:100%;overflow-x:hidden}
 :root{--ink:#090c11;--ink2:#111520;--ink3:#191e2b;--ink4:#1f2535;--gold:#c8a44a;--gold2:#e6c472;--slate:#64748b;--slatel:#94a3b8;--white:#fff;--green:#22c55e;--border:rgba(200,164,74,.15);--borderl:rgba(255,255,255,.06)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh}
@@ -19,7 +20,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-link{font-size:13px;color:var(--slatel);text-decoration:none;font-weight:500;transition:color .2s}
 .nav-link:hover{color:var(--white)}
 .nav-link.active{color:var(--gold)}
-.btn-sm{padding:8px 18px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-sm{padding:8px 18px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:opacity .2s,transform .2s,border-color .2s,background-color .2s,color .2s}
 .btn-gold{background:var(--gold);color:var(--ink);border:1px solid var(--gold)}
 .btn-outline{background:transparent;color:var(--gold);border:1px solid var(--border)}
 .page{padding-top:68px}
@@ -40,7 +41,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .result-count{font-size:13px;color:var(--slatel)}
 .advisors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 /* ADVISOR CARD */
-.advisor-card{background:var(--ink2);border:1px solid var(--borderl);border-radius:14px;padding:24px;transition:all .2s;cursor:pointer}
+.advisor-card{background:var(--ink2);border:1px solid var(--borderl);border-radius:14px;padding:24px;transition:opacity .2s,transform .2s,border-color .2s,background-color .2s,color .2s;cursor:pointer}
 .advisor-card:hover{border-color:rgba(200,164,74,.3);transform:translateY(-2px)}
 .ac-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
 .ac-avatar{width:52px;height:52px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--ink);background:var(--gold)}
@@ -65,7 +66,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .cta-section h2{font-family:'Playfair Display',serif;font-size:32px;margin-bottom:12px}
 .cta-section p{font-size:16px;color:var(--slatel);max-width:520px;margin:0 auto 28px;line-height:1.7}
 .cta-actions{display:flex;gap:12px;justify-content:center}
-.btn-lg{padding:14px 32px;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;letter-spacing:.03em;transition:all .2s}
+.btn-lg{padding:14px 32px;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;letter-spacing:.03em;transition:opacity .2s,transform .2s,border-color .2s,background-color .2s,color .2s}
 </style>
 </head>
 <body>

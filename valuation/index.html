@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
 <style>
+html{scroll-behavior:smooth;height:100%}body{min-height:100%;overflow-x:hidden}
 :root{--ink:#090c11;--ink2:#111520;--ink3:#191e2b;--gold:#c8a44a;--gold2:#e6c472;--slate:#64748b;--slatel:#94a3b8;--white:#fff;--green:#22c55e;--border:rgba(200,164,74,.15);--borderl:rgba(255,255,255,.06)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh}
@@ -42,7 +43,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .slider-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
 .slider-val{font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--gold)}
 input[type=range]{width:100%;accent-color:var(--gold);height:4px}
-.calc-btn{width:100%;padding:13px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;transition:all .2s}
+.calc-btn{width:100%;padding:13px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;transition:opacity .2s,transform .2s,border-color .2s,background-color .2s,color .2s}
 .calc-btn:hover{background:var(--gold2)}
 /* RESULTS */
 .calc-results{background:linear-gradient(135deg,var(--ink3) 0%,var(--ink2) 100%);border:1px solid var(--borderl);border-left:none;border-radius:0 14px 14px 0;padding:36px;min-height:500px}

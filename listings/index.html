@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+html{scroll-behavior:smooth;height:100%}body{min-height:100%;overflow-x:hidden}
 :root{--ink:#090c11;--ink2:#111520;--ink3:#191e2b;--ink4:#1f2535;--gold:#c8a44a;--gold2:#e6c472;--goldm:#8a6d2e;--slate:#64748b;--slatel:#94a3b8;--white:#ffffff;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;--border:rgba(200,164,74,.15);--borderl:rgba(255,255,255,.06)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh}
@@ -24,7 +25,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-link:hover{color:var(--white)}
 .nav-link.active{color:var(--gold)}
 .nav-right{display:flex;align-items:center;gap:10px}
-.btn-sm{padding:8px 18px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .2s;border:none}
+.btn-sm{padding:8px 18px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:opacity .2s,transform .2s,border-color .2s,background-color .2s,color .2s;border:none}
 .btn-gold{background:var(--gold);color:var(--ink)}
 .btn-gold:hover{background:var(--gold2)}
 .btn-outline{background:transparent;color:var(--gold);border:1px solid var(--border) !important}
@@ -34,7 +35,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .page-wrap{display:flex;padding-top:68px;min-height:100vh}
 
 /* FILTER SIDEBAR */
-.filter-sidebar{width:260px;flex-shrink:0;border-right:1px solid var(--borderl);padding:24px;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto}
+.filter-sidebar{width:260px;flex-shrink:0;border-right:1px solid var(--borderl);padding:24px;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto;-webkit-overflow-scrolling:touch;will-change:scroll-position;scroll-behavior:smooth}
 .fs-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:16px}
 .filter-group{margin-bottom:24px}
 .fg-label{font-size:12px;font-weight:700;color:var(--slatel);margin-bottom:10px;letter-spacing:.04em}
@@ -67,7 +68,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 
 /* ROLE TABS */
 .role-tabs{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--borderl);border-radius:8px;overflow:hidden;background:var(--ink2)}
-.rt{padding:10px 18px;font-size:12px;font-weight:600;color:var(--slate);cursor:pointer;transition:all .2s;border:none;background:transparent;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.rt{padding:10px 18px;font-size:12px;font-weight:600;color:var(--slate);cursor:pointer;transition:opacity .2s,transform .2s,border-color .2s,background-color .2s,color .2s;border:none;background:transparent;font-family:'DM Sans',sans-serif;white-space:nowrap}
 .rt:hover{color:var(--slatel)}
 .rt.active{background:var(--gold);color:var(--ink)}
 
@@ -80,7 +81,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 
 /* DEAL CARDS */
 .deal-list{display:flex;flex-direction:column;gap:14px}
-.deal-row{background:var(--ink2);border:1px solid var(--borderl);border-radius:12px;padding:22px 24px;display:flex;gap:24px;cursor:pointer;transition:all .2s;text-decoration:none;align-items:flex-start}
+.deal-row{background:var(--ink2);border:1px solid var(--borderl);border-radius:12px;padding:22px;content-visibility:auto;contain-intrinsic-size:0 400px 24px;display:flex;gap:24px;cursor:pointer;transition:opacity .2s,transform .2s,border-color .2s,background-color .2s,color .2s;text-decoration:none;align-items:flex-start}
 .deal-row:hover{border-color:rgba(200,164,74,.3);transform:translateY(-1px)}
 .dr-left{flex:1;min-width:0}
 .dr-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
