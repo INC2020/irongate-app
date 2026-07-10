@@ -140,20 +140,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">
+  <a href="https://irongatemarkets.io/" class="nav-logo">
     <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#090c11"/><rect x="4" y="8" width="3" height="18" rx="1.5" fill="#c8a44a"/><rect x="25" y="8" width="3" height="18" rx="1.5" fill="#c8a44a"/><rect x="4" y="8" width="24" height="3" rx="1.5" fill="#c8a44a"/></svg>
     <span class="logo-text">Irongate<span> Markets</span></span>
   </a>
   <div class="nav-links">
-    <a href="/dashboard" class="nav-link">Dashboard</a>
-    <a href="/listings" class="nav-link active">Browse Deals</a>
-    <a href="/list-a-deal" class="nav-link">List a Deal</a>
-    <a href="/advisors" class="nav-link">Advisors</a>
-    <a href="/resources" class="nav-link">Resources</a>
+    <a href="https://irongatemarkets.io/dashboard" class="nav-link">Dashboard</a>
+    <a href="https://irongatemarkets.io/listings" class="nav-link active">Browse Deals</a>
+    <a href="https://irongatemarkets.io/list-a-deal" class="nav-link">List a Deal</a>
+    <a href="https://irongatemarkets.io/advisors" class="nav-link">Advisors</a>
+    <a href="https://irongatemarkets.io/resources" class="nav-link">Resources</a>
   </div>
   <div class="nav-right" id="nav-auth">
     <a href="#" id="nav-signin" class="btn-sm btn-outline" style="border:1px solid var(--border)">Sign In</a>
-    <a href="/" class="btn-sm btn-gold">Get Access</a>
+    <a href="https://irongatemarkets.io/" class="btn-sm btn-gold">Get Access</a>
   </div>
 </nav>
 
@@ -428,7 +428,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
         <h3>10,840 More Deals Available</h3>
         <p>Create a free account to access full deal details, sign NDAs, and receive AI-matched deal flow to your inbox daily.</p>
         <div class="gate-actions">
-          <a href="/" class="btn-sm btn-gold" style="padding:13px 32px;font-size:14px;">Create Free Account</a>
+          <a href="https://irongatemarkets.io/" class="btn-sm btn-gold" style="padding:13px 32px;font-size:14px;">Create Free Account</a>
           <button onclick="document.getElementById('signin-modal').style.display='flex'" class="btn-sm btn-outline" style="padding:13px 32px;font-size:14px;border:1px solid var(--border)">Sign In</button>
         </div>
       </div>
@@ -511,7 +511,7 @@ function init(){
 function setLoggedIn(user){
   isLoggedIn=true;
   var n=user.user_metadata&&user.user_metadata.first_name?user.user_metadata.first_name:user.email.split('@')[0];
-  document.getElementById('nav-auth').innerHTML='<span style="font-size:13px;color:var(--slatel)">Hi, '+n+'</span><a href="/dashboard" class="btn-sm btn-gold">My Dashboard</a>';
+  document.getElementById('nav-auth').innerHTML='<span style="font-size:13px;color:var(--slatel)">Hi, '+n+'</span><a href="https://irongatemarkets.io/dashboard" class="btn-sm btn-gold">My Dashboard</a>';
   document.getElementById('pagination').style.display='flex';
 }
 
