@@ -92,12 +92,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 </div>
 
 <nav>
-  <a href="/" class="nav-logo">Irongate<span> Markets</span></a>
+  <a href="https://irongatemarkets.io/" class="nav-logo">Irongate<span> Markets</span></a>
   <div class="nav-links">
-    <a href="/dashboard" class="nav-link">Dashboard</a>
-    <a href="/listings" class="nav-link">Browse Deals</a>
-    <a href="/advisors" class="nav-link">Advisors</a>
-    <a href="/resources" class="nav-link">Resources</a>
+    <a href="https://irongatemarkets.io/dashboard" class="nav-link">Dashboard</a>
+    <a href="https://irongatemarkets.io/listings" class="nav-link">Browse Deals</a>
+    <a href="https://irongatemarkets.io/advisors" class="nav-link">Advisors</a>
+    <a href="https://irongatemarkets.io/resources" class="nav-link">Resources</a>
   </div>
   <button onclick="signOut()" class="btn-sm btn-outline">Sign Out</button>
 </nav>
@@ -238,7 +238,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
           <div style="text-align:center;padding:40px 20px;color:var(--slate)">No saved deals yet. Browse listings and click the bookmark icon to save deals here.</div>
         </div>
         <div style="margin-top:16px;text-align:center">
-          <a href="/listings" style="font-size:13px;color:var(--gold);text-decoration:none">Browse Listings →</a>
+          <a href="https://irongatemarkets.io/listings" style="font-size:13px;color:var(--gold);text-decoration:none">Browse Listings →</a>
         </div>
       </div>
     </div>
@@ -407,8 +407,8 @@ function sendMagicLink() {
 }
 
 function signOut() {
-  if (!sb) { window.location.href = '/'; return; }
-  sb.auth.signOut().then(function() { window.location.href = '/'; });
+  if (!sb) { window.location.href = 'https://irongatemarkets.io/'; return; }
+  sb.auth.signOut().then(function() { window.location.href = 'https://irongatemarkets.io/'; });
 }
 
 function confirmDelete() {
