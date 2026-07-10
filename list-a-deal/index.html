@@ -102,20 +102,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">
+  <a href="https://irongatemarkets.io/" class="nav-logo">
     <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#090c11"/><rect x="4" y="8" width="3" height="18" rx="1.5" fill="#c8a44a"/><rect x="25" y="8" width="3" height="18" rx="1.5" fill="#c8a44a"/><rect x="4" y="8" width="24" height="3" rx="1.5" fill="#c8a44a"/></svg>
     <span class="logo-text">Irongate<span> Markets</span></span>
   </a>
   <div class="nav-links">
-    <a href="/dashboard" class="nav-link">Dashboard</a>
-    <a href="/listings" class="nav-link">Browse Deals</a>
-    <a href="/list-a-deal" class="nav-link active">List a Deal</a>
-    <a href="/advisors" class="nav-link">Advisors</a>
-    <a href="/resources" class="nav-link">Resources</a>
+    <a href="https://irongatemarkets.io/dashboard" class="nav-link">Dashboard</a>
+    <a href="https://irongatemarkets.io/listings" class="nav-link">Browse Deals</a>
+    <a href="https://irongatemarkets.io/list-a-deal" class="nav-link active">List a Deal</a>
+    <a href="https://irongatemarkets.io/advisors" class="nav-link">Advisors</a>
+    <a href="https://irongatemarkets.io/resources" class="nav-link">Resources</a>
   </div>
   <div class="nav-right" id="nav-auth">
     <a href="#" id="nav-signin" class="btn-sm btn-outline">Sign In</a>
-    <a href="/" class="btn-sm btn-gold">Get Access</a>
+    <a href="https://irongatemarkets.io/" class="btn-sm btn-gold">Get Access</a>
   </div>
 </nav>
 
@@ -395,8 +395,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
     <h2>Listing Submitted!</h2>
     <p>Our team will review your submission within 1 business day. You'll receive an email at <strong id="success-email" style="color:var(--gold)"></strong> with next steps and your listing preview.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="/dashboard" class="btn-sm btn-gold" style="padding:13px 28px;font-size:14px;">Go to My Dashboard</a>
-      <a href="/listings" class="btn-sm btn-outline" style="padding:13px 28px;font-size:14px;border:1px solid var(--border)">Browse Other Listings</a>
+      <a href="https://irongatemarkets.io/dashboard" class="btn-sm btn-gold" style="padding:13px 28px;font-size:14px;">Go to My Dashboard</a>
+      <a href="https://irongatemarkets.io/listings" class="btn-sm btn-outline" style="padding:13px 28px;font-size:14px;border:1px solid var(--border)">Browse Other Listings</a>
     </div>
   </div>
 
@@ -436,7 +436,7 @@ function init(){
     if(r.data&&r.data.session){
       var u=r.data.session.user;
       var n=u.user_metadata&&u.user_metadata.first_name?u.user_metadata.first_name:u.email.split('@')[0];
-      document.getElementById('nav-auth').innerHTML='<a href="/dashboard" class="btn-sm btn-gold">My Dashboard</a>';
+      document.getElementById('nav-auth').innerHTML='<a href="https://irongatemarkets.io/dashboard" class="btn-sm btn-gold">My Dashboard</a>';
       // Pre-fill email
       var ef=document.querySelector('input[name="email"]');
       if(ef)ef.value=u.email;
