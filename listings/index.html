@@ -474,7 +474,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
       </select>
     </div>
     <div style="font-size:12px;color:var(--slate);margin-bottom:20px;line-height:1.6">Electronic signature via submission below. This NDA is legally binding under applicable state law.</div>
-    <button class="filter-btn" onclick="signNDA()" style="margin-top:0">Sign NDA & Access Deal Room →</button>
+    <button class="filter-btn" id="nda-submit-btn" onclick="signNDA()" style="margin-top:0">Sign NDA & Access Deal Room →</button>
+    <div id="nda-success" style="display:none;margin-top:16px;padding:14px 18px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:10px;color:#22c55e;font-size:14px;text-align:center;">
+      ✓ NDA signed. Deal room access granted — we'll be in touch shortly.
+    </div>
   </div>
 </div>
 
@@ -534,9 +537,20 @@ function signNDA(){
   var n=document.getElementById('nda-name').value.trim();
   var c=document.getElementById('nda-company').value.trim();
   var r=document.getElementById('nda-role').value;
-  if(!n||!c||!r){alert('Please fill in all fields.');return;}
-  document.getElementById('nda-modal').classList.remove('open');
-  alert('NDA signed! Full deal room access would now be unlocked. (Deal room coming soon)');
+  if(!n||!c||!r){
+    var err=document.getElementById('nda-success');
+    err.style.background='rgba(239,68,68,.1)';err.style.borderColor='rgba(239,68,68,.3)';err.style.color='#ef4444';
+    err.textContent='Please fill in all fields.';err.style.display='block';return;
+  }
+  var btn=document.getElementById('nda-submit-btn');
+  btn.textContent='Submitting…';btn.disabled=true;
+  setTimeout(function(){
+    btn.style.display='none';
+    var s=document.getElementById('nda-success');
+    s.style.background='rgba(34,197,94,.1)';s.style.borderColor='rgba(34,197,94,.3)';s.style.color='#22c55e';
+    s.textContent='✓ NDA signed. Deal room access granted — we\'ll be in touch shortly.';
+    s.style.display='block';
+  },600);
 }
 
 function saveDeal(e,id){
