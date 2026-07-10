@@ -264,8 +264,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
     <p>Weekly M&A intel for the lower middle market — deal multiples, market trends, and practical advice. No fluff.</p>
     <div class="nl-form">
       <input type="email" class="nl-input" placeholder="your@email.com" id="nl-email">
-      <button class="nl-btn" onclick="subscribeNewsletter()">Subscribe →</button>
+      <button id="nl-btn" class="nl-btn" onclick="subscribeNewsletter()">Subscribe →</button>
     </div>
+    <div id="nl-msg" style="display:none;margin-top:12px;font-size:14px;font-weight:600"></div>
     <div style="font-size:11px;color:var(--slate);margin-top:10px">Join 4,200+ professionals. Unsubscribe anytime.</div>
   </div>
 </div>
@@ -276,10 +277,18 @@ function filterTab(el, cat) {
   el.classList.add('active');
 }
 function subscribeNewsletter() {
-  var em = document.getElementById('nl-email').value;
-  if (!em || !em.includes('@')) { alert('Please enter a valid email address.'); return; }
-  alert('You\'re subscribed! Welcome to The Irongate Brief.');
-  document.getElementById('nl-email').value = '';
+  var em = document.getElementById('nl-email').value.trim();
+  var msg = document.getElementById('nl-msg');
+  if (!em || !em.includes('@')) {
+    msg.style.color='#ef4444'; msg.textContent='Please enter a valid email address.'; msg.style.display='block'; return;
+  }
+  var btn = document.getElementById('nl-btn');
+  btn.textContent='Subscribing…'; btn.disabled=true;
+  setTimeout(function(){
+    document.getElementById('nl-email').value='';
+    btn.style.display='none';
+    msg.style.color='#22c55e'; msg.textContent='✓ You\'re subscribed! Welcome to The Irongate Brief.'; msg.style.display='block';
+  }, 600);
 }
 </script>
 </body>
