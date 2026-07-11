@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Allow: /listings
+Allow: /list-a-deal
+Allow: /valuation
+Allow: /advisors
+Allow: /resources
+
+# Block auth-gated pages
+Disallow: /dashboard
+Disallow: /profile
+
+# Block query-string variations to prevent duplicate content
+Disallow: /*?*
+
+# Sitemap location
+Sitemap: https://irongatemarkets.io/sitemap.xml
+
+# Crawl delay (be polite to server)
+Crawl-delay: 2
